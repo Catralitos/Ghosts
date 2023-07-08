@@ -11,23 +11,38 @@ namespace Ghosts
         public float speedMultiplier = 1.0f;
         public Vector2 initialDirection;
         public Vector2 direction { get; private set; }
+        public Vector2 nextDirection;
         public LayerMask obstacleLayer;
         public Rigidbody2D rb { get; private set; }
         public Vector3 startingPosition { get; private set; }
         public bool moving = false;
-        public Transform objective;
+        public Vector2 objective;
+        private GhostOrderer go;
 
 
         private void Awake()
         {
             this.rb = GetComponent<Rigidbody2D>();
             this.startingPosition = this.transform.position;
+            this.go = GetComponent<GhostOrderer>();
         }
 
         public void SetDirection(Vector2 direction)
         {
-            this.lastMovingDirection = this.direction;
-            this.direction = direction;
+            // Only set the direction if the tile in that direction is available
+            // otherwise we set it as the next direction so it'll automatically be
+            // set when it does become available
+            if (!Occupied(direction))
+            {
+                Debug.Log("not occupied");
+                this.direction = direction;
+                nextDirection = Vector2.zero;
+            }
+            else
+            {
+                Debug.Log("ya occupied");
+                nextDirection = direction;
+            }
         }
 
         public bool Occupied(Vector2 direction)
@@ -37,12 +52,21 @@ namespace Ghosts
             return hit.collider != null;
         }
 
+        private void Update() {
+            if (nextDirection != Vector2.zero)
+            {
+                SetDirection(nextDirection);
+            }
+        }
+
         private void FixedUpdate()
         {
-            if (this.rb.position.x == objective.position.x && this.rb.position.y == objective.position.y)
+            if (this.rb.position == objective)
             {
+                moving = false;
                 this.lastMovingDirection = Vector2.zero;
                 this.direction = Vector2.zero;
+                this.nextDirection = Vector2.zero;
             }
 
             Vector2 position = this.rb.position;
@@ -54,45 +78,47 @@ namespace Ghosts
         {
             if (!moving)
             {
-                mind.ChangeGhost(this.gameObject);
-                GetComponent<GhostOrderer>().enabled = true;
+                Debug.Log("BananaMan");
+                //mind.ChangeGhost(this.gameObject);
+                go.enabled = true;
             }
         }
 
-        public void StartMovement(Transform target)
+        public void StartMovement(Vector2 target)
         {
             objective = target;
             float distance = 0.0f;
             Vector2 direction = Vector2.zero;
 
-            if (this.rb.position.x != objective.position.x || this.rb.position.y != objective.position.y)
+            if (this.rb.position != objective)
             {
-                if (!Occupied(Vector2.right) && Vector2.right != -lastMovingDirection &&
-                    (Vector2.Distance(this.rb.position + Vector2.right, objective.position) < distance ||
-                     distance == 0))
+                moving = true;
+                if (!Occupied(Vector2.right) && 
+                    (Vector2.Distance(this.rb.position + Vector2.right, objective) < distance ||
+                        distance == 0))
                 {
-                    distance = Vector2.Distance(this.rb.position + Vector2.right, objective.position);
+                    distance = Vector2.Distance(this.rb.position + Vector2.right, objective);
                     direction = Vector2.right;
                 }
 
-                if (!Occupied(Vector2.left) && Vector2.left != -lastMovingDirection &&
-                    (Vector2.Distance(this.rb.position + Vector2.left, objective.position) < distance || distance == 0))
+                if (!Occupied(Vector2.left) &&
+                    (Vector2.Distance(this.rb.position + Vector2.left, objective) < distance || distance == 0))
                 {
-                    distance = Vector2.Distance(this.rb.position + Vector2.left, objective.position);
+                    distance = Vector2.Distance(this.rb.position + Vector2.left, objective);
                     direction = Vector2.left;
                 }
 
-                if (!Occupied(Vector2.up) && Vector2.up != -lastMovingDirection &&
-                    (Vector2.Distance(this.rb.position + Vector2.up, objective.position) < distance || distance == 0))
+                if (!Occupied(Vector2.up) &&
+                    (Vector2.Distance(this.rb.position + Vector2.up, objective) < distance || distance == 0))
                 {
-                    distance = Vector2.Distance(this.rb.position + Vector2.up, objective.position);
+                    distance = Vector2.Distance(this.rb.position + Vector2.up, objective);
                     direction = Vector2.up;
                 }
 
-                if (!Occupied(Vector2.down) && Vector2.down != -lastMovingDirection &&
-                    (Vector2.Distance(this.rb.position + Vector2.down, objective.position) < distance || distance == 0))
+                if (!Occupied(Vector2.down) &&
+                    (Vector2.Distance(this.rb.position + Vector2.down, objective) < distance || distance == 0))
                 {
-                    distance = Vector2.Distance(this.rb.position + Vector2.down, objective.position);
+                    distance = Vector2.Distance(this.rb.position + Vector2.down, objective);
                     direction = Vector2.down;
                 }
 
@@ -100,48 +126,35 @@ namespace Ghosts
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            Node node = other.GetComponent<Node>();
-            float distance = 0.0f;
-            Vector2 direction = Vector2.zero;
+        
 
-            if (node != null &&
-                (this.rb.position.x != objective.position.x || this.rb.position.y != objective.position.y))
+        private void OnTriggerEnter2D(Collider2D other) {
+           
+            Node node = other.GetComponent<Node>(); 
+
+            if (node != null && this.rb.position != objective)
             {
-                if (!Occupied(Vector2.right) && Vector2.right != -lastMovingDirection &&
-                    (Vector2.Distance(this.rb.position + Vector2.right, objective.position) < distance ||
-                     distance == 0))
+                Vector2 direction = Vector2.zero;
+                float distance = 0.0f;
+
+                // Find the available direction that moves farthest from pacman
+                foreach (Vector2 availableDirection in node.availableDirections)
                 {
-                    distance = Vector2.Distance(this.rb.position + Vector2.right, objective.position);
-                    direction = Vector2.right;
+                    Debug.Log("availableDirection is: " + availableDirection);
+                    // If the distance in this direction is greater than the current
+                    // max distance then this direction becomes the new farthest
+                    if (availableDirection != -(lastMovingDirection) && 
+                        Vector2.Distance(this.rb.position + availableDirection, objective) < distance || distance == 0)
+                    {
+                        distance = Vector2.Distance(this.rb.position + availableDirection, objective);
+                        direction = availableDirection;
+                    }
                 }
 
-                if (!Occupied(Vector2.left) && Vector2.left != -lastMovingDirection &&
-                    (Vector2.Distance(this.rb.position + Vector2.left, objective.position) < distance || distance == 0))
-                {
-                    distance = Vector2.Distance(this.rb.position + Vector2.left, objective.position);
-                    direction = Vector2.left;
-                }
-
-                if (!Occupied(Vector2.up) && Vector2.up != -lastMovingDirection &&
-                    (Vector2.Distance(this.rb.position + Vector2.up, objective.position) < distance || distance == 0))
-                {
-                    distance = Vector2.Distance(this.rb.position + Vector2.up, objective.position);
-                    direction = Vector2.up;
-                }
-
-                if (!Occupied(Vector2.down) && Vector2.down != -lastMovingDirection &&
-                    (Vector2.Distance(this.rb.position + Vector2.down, objective.position) < distance || distance == 0))
-                {
-                    distance = Vector2.Distance(this.rb.position + Vector2.down, objective.position);
-                    direction = Vector2.down;
-                }
-
+                Debug.Log(direction);
                 SetDirection(direction);
             }
         }
-
 
     }
 }
