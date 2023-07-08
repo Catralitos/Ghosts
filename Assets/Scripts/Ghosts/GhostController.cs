@@ -9,7 +9,6 @@ namespace Ghosts
         public Vector2 lastMovingDirection = Vector2.zero;
         public float speed = 8.0f;
         public float speedMultiplier = 1.0f;
-        public Vector2 initialDirection;
         public Vector2 direction { get; private set; }
         public Vector2 nextDirection;
         public LayerMask obstacleLayer;
@@ -34,13 +33,12 @@ namespace Ghosts
             // set when it does become available
             if (!Occupied(direction))
             {
-                Debug.Log("not occupied");
+                lastMovingDirection = this.direction;
                 this.direction = direction;
                 nextDirection = Vector2.zero;
             }
             else
             {
-                Debug.Log("ya occupied");
                 nextDirection = direction;
             }
         }
@@ -143,16 +141,13 @@ namespace Ghosts
                     Debug.Log("availableDirection is: " + availableDirection);
                     // If the distance in this direction is greater than the current
                     // max distance then this direction becomes the new farthest
-                    if (availableDirection != -(lastMovingDirection) && 
+                    if (availableDirection != lastMovingDirection * -1.0f && 
                         Vector2.Distance(this.rb.position + availableDirection, objective) < distance || distance == 0)
                     {
                         distance = Vector2.Distance(this.rb.position + availableDirection, objective);
                         direction = availableDirection;
                     }
                 }
-
-                Debug.Log(direction);
-                SetDirection(direction);
             }
         }
 
