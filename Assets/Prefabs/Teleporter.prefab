@@ -111,5 +111,5 @@ MonoBehaviour:
   teleportables:
     serializedVersion: 2
     m_Bits: 384
-  teleporterDistance: 28
+  teleporterDistance: 26
   rightTeleporter: 0

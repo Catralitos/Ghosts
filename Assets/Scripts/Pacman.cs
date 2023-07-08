@@ -9,6 +9,8 @@ public class Pacman : MonoBehaviour
     public PacmanChase chase { get; private set; }
     public Transform[] ghosts;
     public Transform pelletMap;
+    public LayerMask ghostLayer;
+    public LayerMask wallLayer;
     public int points = 200;
 
     private void Awake()

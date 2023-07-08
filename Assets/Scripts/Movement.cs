@@ -42,6 +42,12 @@ public class Movement : MonoBehaviour
         if (nextDirection != Vector2.zero) {
             SetDirection(nextDirection);
         }
+
+        Transform pacTransform = transform;
+        Vector3 localScale = pacTransform.localScale;
+        localScale = new Vector3(localScale.x * direction.x, localScale.y,
+            localScale.z);
+        pacTransform.localScale = localScale;
     }
 
     private void FixedUpdate()
@@ -59,13 +65,11 @@ public class Movement : MonoBehaviour
         // set when it does become available
         if (forced || !Occupied(direction))
         {
-            Debug.Log("not occupied");
             this.direction = direction;
             nextDirection = Vector2.zero;
         }
         else
         {
-            Debug.Log("ya occupied");
             nextDirection = direction;
         }
     }
