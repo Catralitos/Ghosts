@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4870244658595339207}
   - component: {fileID: 6743510922051948972}
   - component: {fileID: 4217992079078233407}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ghost_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,6 @@ MonoBehaviour:
   obstacles:
     serializedVersion: 2
     m_Bits: 64
-  tileMap: {fileID: 0}
 --- !u!114 &6743510922051948972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +126,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mind: {fileID: 0}
-  lastMovingDirection: {x: 0, y: 0}
   speed: 4
   speedMultiplier: 1
   direction: {x: 0, y: 0}

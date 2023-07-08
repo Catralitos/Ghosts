@@ -6,13 +6,7 @@ namespace Ghosts
 {
     public class GhostOrderer : MonoBehaviour
     {
-
-
         public LayerMask obstacles;
-        
-        
-        [SerializeField] private Tilemap tileMap;
-        // Start is called before the first frame update
 
         private GhostController _ghostController;
         
