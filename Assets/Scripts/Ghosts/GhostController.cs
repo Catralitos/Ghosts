@@ -7,7 +7,6 @@ namespace Ghosts
     {
 
         public Mind mind;
-        public Vector2 lastMovingDirection = Vector2.zero;
         public float speed = 8.0f;
         public float speedMultiplier = 1.0f;
         public Vector2 direction; //{ get; private set; }
@@ -34,7 +33,6 @@ namespace Ghosts
             // set when it does become available
             if (!Occupied(direction))
             {
-                lastMovingDirection = this.direction;
                 this.direction = direction;
                 nextDirection = Vector2.zero;
             }
@@ -70,7 +68,6 @@ namespace Ghosts
                 rb.velocity = Vector2.zero;
                 rb.position = objective;
                 transform.position = objective;
-                this.lastMovingDirection = Vector2.zero;
                 this.direction = Vector2.zero;
                 this.nextDirection = Vector2.zero;
             }
@@ -150,7 +147,7 @@ namespace Ghosts
                     Debug.Log("availableDirection is: " + availableDirection);
                     // If the distance in this direction is greater than the current
                     // max distance then this direction becomes the new farthest
-                    if (availableDirection != lastMovingDirection * -1.0f && 
+                    if (availableDirection != this.direction * -1 && 
                         Vector2.Distance(this.rb.position + availableDirection, objective) < distance || distance == 0.0f)
                     {
                         distance = Vector2.Distance(this.rb.position + availableDirection, objective);
