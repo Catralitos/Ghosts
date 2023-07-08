@@ -33,11 +33,11 @@ public class PacmanScatter : PacmanBehavior
             transform.position = other.transform.position;
             float maxScore = float.MinValue;
 
-            Debug.Log("-------------------------------------------------------");
+            //Debug.Log("-------------------------------------------------------");
             // Find the available direction that moves farthest from pacman
             foreach (Vector2 availableDirection in node.availableDirections)
             {
-                Debug.Log("availableDirection: " + availableDirection);
+                //Debug.Log("availableDirection: " + availableDirection);
                 // If the distance in this direction is greater than the current
                 // max distance then this direction becomes the new farthest
                 Vector3 position = transform.position;
@@ -51,13 +51,13 @@ public class PacmanScatter : PacmanBehavior
                 }
                 foreach(Transform ghost in pacman.ghosts) {
                     float test = ghostWeight / Mathf.Pow((ghost.position - newPosition).sqrMagnitude, 1.0f);
-                    Debug.Log("Ghost score: " + test);
+                    //Debug.Log("Ghost score: " + test);
                     score -= test;
                 }
 
                 if (availableDirection == pacman.movement.direction * -1.0f) {
                     score -= sameDirectionPenalty;
-                    Debug.Log("Punishment " + score);
+                    //Debug.Log("Punishment " + score);
                 }
 
                 if (score > maxScore)
@@ -65,10 +65,10 @@ public class PacmanScatter : PacmanBehavior
                     direction = availableDirection;
                     maxScore = score;
                 }
-                Debug.Log(score);
+                //Debug.Log(score);
             }
 
-            Debug.Log(direction);
+            //Debug.Log(direction);
             pacman.movement.SetDirection(direction);
         }
     }

@@ -31,7 +31,7 @@ namespace Ghosts
 
                     Vector2 actualPos = new Vector2(RoundToNearestHalf(worldPoint.x), RoundToNearestHalf(worldPoint.y));
 
-                    Collider2D[] colliders = Physics2D.OverlapCircleAll(actualPos, 0.75f, obstacles);
+                    Collider2D[] colliders = Physics2D.OverlapCircleAll(actualPos, 0.25f, obstacles);
 
                     if (colliders.Length == 0)
                     {
