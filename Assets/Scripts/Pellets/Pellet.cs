@@ -27,6 +27,7 @@ namespace Pellets
             if (pacmanMask.HasLayer(other.gameObject.layer))
             {
                 pelletEatenEvent.RaiseEvent();
+                gameObject.SetActive(false);
             }
         }
     }
