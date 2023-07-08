@@ -16,6 +16,8 @@ namespace Ghosts
         public Vector3 startingPosition { get; private set; }
         public Vector2 objective;
         private GhostOrderer go;
+        [SerializeField] private Transform teleporter_l;
+        [SerializeField] private Transform teleporter_r;
 
 
         private void Awake()
@@ -41,7 +43,7 @@ namespace Ghosts
                 nextDirection = direction;
             }
         }
-        
+
         private static float RoundToNearestHalf(float a)
         {
             return Mathf.Round(a * 2f) * 0.5f;
@@ -85,8 +87,17 @@ namespace Ghosts
 
         private void OnMouseDown()
         {
-            mind.ChangeGhost(this.gameObject);
-            go.enabled = true;
+                mind.ChangeGhost(this.gameObject);
+                go.enabled = true;
+        }
+
+        private float DistanceToPoint(Vector2 pos, Vector2 target)
+        {
+            float min_dist = Mathf.Min(Vector2.Distance(pos, target),
+                Vector2.Distance(pos, (Vector2)teleporter_l.position) + Vector2.Distance((Vector2)teleporter_r.position, target),
+                Vector2.Distance(pos, (Vector2)teleporter_r.position) + Vector2.Distance((Vector2)teleporter_l.position, target));
+
+            return min_dist;
         }
 
         public void StartMovement(Vector2 target)
@@ -98,31 +109,31 @@ namespace Ghosts
             if (this.rb.position != objective)
             {
                 if (!Occupied(Vector2.right) && 
-                    (Vector2.Distance(this.rb.position + Vector2.right, objective) < distance ||
+                    (DistanceToPoint(this.rb.position + Vector2.right, objective) < distance ||
                         distance == 0.0f))
                 {
-                    distance = Vector2.Distance(this.rb.position + Vector2.right, objective);
+                    distance = DistanceToPoint(this.rb.position + Vector2.right, objective);
                     direction = Vector2.right;
                 }
 
                 if (!Occupied(Vector2.left) &&
-                    (Vector2.Distance(this.rb.position + Vector2.left, objective) < distance || distance == 0.0f))
+                    (DistanceToPoint(this.rb.position + Vector2.left, objective) < distance || distance == 0.0f))
                 {
-                    distance = Vector2.Distance(this.rb.position + Vector2.left, objective);
+                    distance = DistanceToPoint(this.rb.position + Vector2.left, objective);
                     direction = Vector2.left;
                 }
 
                 if (!Occupied(Vector2.up) &&
-                    (Vector2.Distance(this.rb.position + Vector2.up, objective) < distance || distance == 0.0f))
+                    (DistanceToPoint(this.rb.position + Vector2.up, objective) < distance || distance == 0.0f))
                 {
-                    distance = Vector2.Distance(this.rb.position + Vector2.up, objective);
+                    distance = DistanceToPoint(this.rb.position + Vector2.up, objective);
                     direction = Vector2.up;
                 }
 
                 if (!Occupied(Vector2.down) &&
-                    (Vector2.Distance(this.rb.position + Vector2.down, objective) < distance || distance == 0.0f))
+                    (DistanceToPoint(this.rb.position + Vector2.down, objective) < distance || distance == 0.0f))
                 {
-                    distance = Vector2.Distance(this.rb.position + Vector2.down, objective);
+                    distance = DistanceToPoint(this.rb.position + Vector2.down, objective);
                     direction = Vector2.down;
                 }
 
@@ -148,9 +159,9 @@ namespace Ghosts
                     // If the distance in this direction is greater than the current
                     // max distance then this direction becomes the new farthest
                     if (availableDirection != this.direction * -1 && 
-                        Vector2.Distance(this.rb.position + availableDirection, objective) < distance || distance == 0.0f)
+                        DistanceToPoint(this.rb.position + availableDirection, objective) < distance || distance == 0.0f)
                     {
-                        distance = Vector2.Distance(this.rb.position + availableDirection, objective);
+                        distance = DistanceToPoint(this.rb.position + availableDirection, objective);
                         d = availableDirection;
                     }
                 }
