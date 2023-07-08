@@ -43,7 +43,6 @@ namespace Ghosts
                     {
                         _ghostController.StartMovement(actualPos);
                     }
-                    enabled = false;
 
                 }
             }
