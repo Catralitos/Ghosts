@@ -17,7 +17,7 @@ namespace Ghosts
 
         public void ChangeGhost(GameObject newGhost)
         {
-            currentGhost.GetComponent<GhostOrderer>().enabled = false;
+            //currentGhost.GetComponent<GhostOrderer>().enabled = false;
             currentGhost = newGhost;
         }
     }
