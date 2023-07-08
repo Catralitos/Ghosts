@@ -14,11 +14,24 @@ public class GhostController : MonoBehaviour
     public LayerMask obstacleLayer;
     public Rigidbody2D rb { get; private set; }
     public Vector3 startingPosition { get; private set; }
+    public bool moving = false;
 
 
     private void Awake() {
         this.rb = GetComponent<Rigidbody2D>();
         this.startingPosition = this.transform.position;
+    }
+
+    private void MoveToPosition(Transform objective)
+    {
+        moving = true;
+        GetComponent<GhostOrderer>().enabled = false;
+        while (transform.position != objective.position)
+        {
+
+        }
+        moving = false;
+
     }
 
     public void SetDirection(Vector2 direction, bool forced)
@@ -39,8 +52,13 @@ public class GhostController : MonoBehaviour
     }
 
     private void OnMouseDown() {
+        if (!moving)
+        {
         mind.ChangeGhost(this.gameObject);
         GetComponent<GhostOrderer>().enabled = true;
+        }
     }
+
+    
 
 }
