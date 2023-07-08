@@ -6,13 +6,7 @@ namespace Ghosts
 {
     public class GhostOrderer : MonoBehaviour
     {
-
-
         public LayerMask obstacles;
-        
-        
-        [SerializeField] private Tilemap tileMap;
-        // Start is called before the first frame update
 
         private GhostController _ghostController;
         
@@ -37,7 +31,7 @@ namespace Ghosts
 
                     Vector2 actualPos = new Vector2(RoundToNearestHalf(worldPoint.x), RoundToNearestHalf(worldPoint.y));
 
-                    Collider2D[] colliders = Physics2D.OverlapCircleAll(actualPos, 0.25f, obstacles);
+                    Collider2D[] colliders = Physics2D.OverlapCircleAll(actualPos, 0.75f, obstacles);
 
                     if (colliders.Length == 0)
                     {
