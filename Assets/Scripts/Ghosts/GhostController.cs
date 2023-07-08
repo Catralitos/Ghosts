@@ -43,11 +43,20 @@ namespace Ghosts
                 nextDirection = direction;
             }
         }
+        
+        private static float RoundToNearestHalf(float a)
+        {
+            return Mathf.Round(a * 2f) * 0.5f;
+        }
 
         public bool Occupied(Vector2 direction)
         {
-            RaycastHit2D hit = Physics2D.BoxCast(this.transform.position, Vector2.one * 0.75f, 0.0f, direction, 1.5f,
-                this.obstacleLayer);
+            Vector3 position = transform.position;
+            position = new Vector3(RoundToNearestHalf(position.x),
+                RoundToNearestHalf(position.y));
+            transform.position = position;
+            RaycastHit2D hit = Physics2D.BoxCast(position, Vector2.one * 0.75f, 0.0f, direction, 1.5f,
+                obstacleLayer);
             return hit.collider != null;
         }
 
@@ -79,8 +88,8 @@ namespace Ghosts
 
         private void OnMouseDown()
         {
-                mind.ChangeGhost(this.gameObject);
-                go.enabled = true;
+            mind.ChangeGhost(this.gameObject);
+            go.enabled = true;
         }
 
         public void StartMovement(Vector2 target)
