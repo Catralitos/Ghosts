@@ -319,7 +319,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pelletWeight: 10
   ghostWeight: 100
-  sameDirectionPenalty: 0
+  sameDirectionPenalty: 200
 --- !u!114 &8505764397766522339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,7 +334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pelletWeight: 10
   ghostWeight: 100
-  sameDirectionPenalty: 0
+  sameDirectionPenalty: 200
 --- !u!95 &446969526001947200
 Animator:
   serializedVersion: 5
