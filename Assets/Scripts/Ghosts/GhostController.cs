@@ -44,17 +44,9 @@ namespace Ghosts
             }
         }
 
-        private static float RoundToNearestHalf(float a)
-        {
-            return Mathf.Round(a * 2f) * 0.5f;
-        }
-
         public bool Occupied(Vector2 direction)
         {
             Vector3 position = transform.position;
-            position = new Vector3(RoundToNearestHalf(position.x),
-                RoundToNearestHalf(position.y));
-            transform.position = position;
             RaycastHit2D hit = Physics2D.BoxCast(position, Vector2.one * 0.75f, 0.0f, direction, 1.5f,
                 obstacleLayer);
             return hit.collider != null;
