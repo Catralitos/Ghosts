@@ -9,12 +9,11 @@ namespace Ghosts
         public Vector2 lastMovingDirection = Vector2.zero;
         public float speed = 8.0f;
         public float speedMultiplier = 1.0f;
-        public Vector2 direction { get; private set; }
+        public Vector2 direction; //{ get; private set; }
         public Vector2 nextDirection;
         public LayerMask obstacleLayer;
         public Rigidbody2D rb { get; private set; }
         public Vector3 startingPosition { get; private set; }
-        public bool moving = false;
         public Vector2 objective;
         private GhostOrderer go;
 
@@ -55,17 +54,16 @@ namespace Ghosts
             {
                 SetDirection(nextDirection);
             }
-        }
-
-        private void FixedUpdate()
-        {
-            if (this.rb.position == objective)
+            if ((Vector2)transform.position == objective)
             {
-                moving = false;
                 this.lastMovingDirection = Vector2.zero;
                 this.direction = Vector2.zero;
                 this.nextDirection = Vector2.zero;
             }
+        }
+
+        private void FixedUpdate()
+        {
 
             Vector2 position = this.rb.position;
             Vector2 translation = this.direction * this.speed * this.speedMultiplier * Time.fixedDeltaTime;
@@ -74,12 +72,9 @@ namespace Ghosts
 
         private void OnMouseDown()
         {
-            if (!moving)
-            {
                 Debug.Log("BananaMan");
                 //mind.ChangeGhost(this.gameObject);
                 go.enabled = true;
-            }
         }
 
         public void StartMovement(Vector2 target)
@@ -90,7 +85,6 @@ namespace Ghosts
 
             if (this.rb.position != objective)
             {
-                moving = true;
                 if (!Occupied(Vector2.right) && 
                     (Vector2.Distance(this.rb.position + Vector2.right, objective) < distance ||
                         distance == 0))

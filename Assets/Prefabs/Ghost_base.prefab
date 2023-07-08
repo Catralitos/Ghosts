@@ -110,6 +110,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07d9b83b5e146f40b6f24c64604482d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obstacles:
+    serializedVersion: 2
+    m_Bits: 64
+  tileMap: {fileID: 0}
 --- !u!114 &6743510922051948972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,13 +127,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mind: {fileID: 0}
+  lastMovingDirection: {x: 0, y: 0}
   speed: 4
   speedMultiplier: 1
-  initialDirection: {x: 0, y: 0}
+  nextDirection: {x: 0, y: 0}
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 64
   moving: 0
+  objective: {x: 0, y: 0}
 --- !u!212 &4217992079078233407
 SpriteRenderer:
   m_ObjectHideFlags: 0
