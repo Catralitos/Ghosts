@@ -20,12 +20,10 @@ namespace Audio
         /// <summary>
         /// The volume
         /// </summary>
-        [Range(0f, 1f)]
         public float volume = 0.2f;
         /// <summary>
         /// The pitch
         /// </summary>
-        [Range(0.1f, 3f)]
         public float pitch = 1f;
         /// <summary>
         /// If the playback is supposed to loop or not
