@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +16,8 @@ public class Movement : MonoBehaviour
     public Vector3 startingPosition { get; private set; }
 
 
-    private SpriteRenderer _spriteRenderer;
+    public Transform spriteChild;
+    private Vector3 _originalScale;
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -25,7 +27,7 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         ResetState();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _originalScale = spriteChild.localScale;
     }
 
     public void ResetState()
@@ -45,14 +47,21 @@ public class Movement : MonoBehaviour
         if (nextDirection != Vector2.zero) {
             SetDirection(nextDirection);
         }
-        _spriteRenderer.flipX = nextDirection.x < 0;
+        
+        int multiplier = direction.x < 0 ? -1 : 1;
+        Vector3 localScale = new Vector3(multiplier * _originalScale.x, _originalScale.y);
+        spriteChild.localScale = localScale;
+
+        int rotation = 0;
+        if (Math.Abs(direction.y - 1) <= 0.01f) rotation = 90;
+        if (Math.Abs(direction.y - -1) <= 0.01f) rotation = -90;
+        spriteChild.rotation = Quaternion.Euler(0,0,rotation);
     }
 
     private void FixedUpdate()
     {
         Vector2 position = rigidbody.position;
         Vector2 translation = direction * speed * speedMultiplier * Time.fixedDeltaTime;
-
         rigidbody.MovePosition(position + translation);
     }
 
