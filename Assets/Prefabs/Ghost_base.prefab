@@ -129,6 +129,7 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 64
+  moving: 0
 --- !u!212 &4217992079078233407
 SpriteRenderer:
   m_ObjectHideFlags: 0
