@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Menus
+namespace UI.Menus
 {
     /// <summary>
     /// This class manages the title screen.
