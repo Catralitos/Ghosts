@@ -277,7 +277,7 @@ MonoBehaviour:
   pacmanMask:
     serializedVersion: 2
     m_Bits: 128
-  pelletEatenEvent: {fileID: 0}
+  pelletEatenEvent: {fileID: 11400000, guid: 38fd47e67a080d0449b63d74fcbd314a, type: 2}
 --- !u!95 &163080597547658802
 Animator:
   serializedVersion: 5

@@ -17,6 +17,12 @@ public class PacmanScatter : PacmanBehavior
             pacman.movement.SetDirection(pacman.movement.direction * -1.0f);
         }
     }
+    
+    private static float RoundToNearestHalf(float a)
+    {
+        return Mathf.Round(a * 2f) * 0.5f;
+    }
+
 
     private void OnTriggerEnter2D(Collider2D other) {
          Node node = other.GetComponent<Node>();
@@ -24,6 +30,7 @@ public class PacmanScatter : PacmanBehavior
         if (node != null && enabled)
         {
             Vector2 direction = Vector2.zero;
+            transform.position = other.transform.position;
             float maxScore = float.MinValue;
 
             Debug.Log("-------------------------------------------------------");
@@ -33,7 +40,9 @@ public class PacmanScatter : PacmanBehavior
                 Debug.Log("availableDirection: " + availableDirection);
                 // If the distance in this direction is greater than the current
                 // max distance then this direction becomes the new farthest
-                Vector3 newPosition = transform.position + new Vector3(availableDirection.x, availableDirection.y);
+                Vector3 position = transform.position;
+                //Vector3 newPosition = new Vector3(RoundToNearestHalf(position.x), RoundToNearestHalf(position.y), position.z) + new Vector3(availableDirection.x, availableDirection.y);
+                Vector3 newPosition = position + new Vector3(availableDirection.x, availableDirection.y);
                 float score = 0;
 
                 foreach(Transform pellet in pacman.pelletMap) {

@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3400180313114908685
 MonoBehaviour:
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2354bae455f678145bee69c93509bfc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreHolder: {fileID: 11400000, guid: 407d88e5c6b057847bc1472dc8d35a36, type: 2}
+  scoreHolder: {fileID: 11400000, guid: 407d88e5c6b057847bc1472dc8d35a36, type: 2}
   pelletEatenEvent: {fileID: 11400000, guid: 38fd47e67a080d0449b63d74fcbd314a, type: 2}
   powerPelletEatenEvent: {fileID: 11400000, guid: 722e7009619492d4f8e944e55b858f91, type: 2}
   ghostEatenEvent: {fileID: 11400000, guid: 20a28bfb7b385f74fa49adf7484285a7, type: 2}
