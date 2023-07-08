@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Ghosts
@@ -54,8 +55,11 @@ namespace Ghosts
             {
                 SetDirection(nextDirection);
             }
-            if ((Vector2)transform.position == objective)
+            if (Math.Abs(transform.position.x - objective.x) <= 0.1f && Math.Abs(transform.position.y - objective.y) <= 0.1f)
             {
+                rb.velocity = Vector2.zero;
+                rb.position = objective;
+                transform.position = objective;
                 this.lastMovingDirection = Vector2.zero;
                 this.direction = Vector2.zero;
                 this.nextDirection = Vector2.zero;
@@ -64,15 +68,16 @@ namespace Ghosts
 
         private void FixedUpdate()
         {
-
-            Vector2 position = this.rb.position;
-            Vector2 translation = this.direction * this.speed * this.speedMultiplier * Time.fixedDeltaTime;
-            this.rb.MovePosition(position + translation);
+            //Vector2 translation = this.direction * this.speed * this.speedMultiplier * Time.fixedDeltaTime;
+            Transform t = transform;
+            Vector2 position = t.position;
+            Vector2 moveTowards = Vector2.MoveTowards(position, position + direction,
+                speed * speedMultiplier * Time.fixedDeltaTime);
+            rb.MovePosition(moveTowards);
         }
 
         private void OnMouseDown()
         {
-                Debug.Log("BananaMan");
                 //mind.ChangeGhost(this.gameObject);
                 go.enabled = true;
         }
@@ -124,12 +129,12 @@ namespace Ghosts
            
             Node node = other.GetComponent<Node>(); 
 
-            if (node != null && this.rb.position != objective)
+            if (node != null && Math.Abs(transform.position.x - objective.x) > 0.1f && Math.Abs(transform.position.y - objective.y) > 0.1f)
             {
-                Vector2 direction = Vector2.zero;
+                Debug.Log("Entrou no node");
+                Vector2 d = Vector2.zero;
                 float distance = 0.0f;
-
-                // Find the available direction that moves farthest from pacman
+                
                 foreach (Vector2 availableDirection in node.availableDirections)
                 {
                     Debug.Log("availableDirection is: " + availableDirection);
@@ -139,7 +144,7 @@ namespace Ghosts
                         Vector2.Distance(this.rb.position + availableDirection, objective) < distance || distance == 0)
                     {
                         distance = Vector2.Distance(this.rb.position + availableDirection, objective);
-                        direction = availableDirection;
+                        d = availableDirection;
                     }
                 }
             }
