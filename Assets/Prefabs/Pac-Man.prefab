@@ -300,10 +300,10 @@ MonoBehaviour:
   pelletMap: {fileID: 0}
   ghostLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   wallLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   points: 200
 --- !u!114 &4564872043787248471
 MonoBehaviour:
