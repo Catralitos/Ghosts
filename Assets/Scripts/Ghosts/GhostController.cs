@@ -147,6 +147,8 @@ namespace Ghosts
                         d = availableDirection;
                     }
                 }
+
+                SetDirection(d);
             }
         }
 
