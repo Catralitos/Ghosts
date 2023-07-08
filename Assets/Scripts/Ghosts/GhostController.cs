@@ -23,6 +23,7 @@ namespace Ghosts
         {
             this.rb = GetComponent<Rigidbody2D>();
             this.startingPosition = this.transform.position;
+            this.objective = this.startingPosition;
             this.go = GetComponent<GhostOrderer>();
         }
 
@@ -78,7 +79,7 @@ namespace Ghosts
 
         private void OnMouseDown()
         {
-                //mind.ChangeGhost(this.gameObject);
+                mind.ChangeGhost(this.gameObject);
                 go.enabled = true;
         }
 
