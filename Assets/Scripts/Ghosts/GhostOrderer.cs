@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -7,30 +8,44 @@ namespace Ghosts
     {
 
 
+        public LayerMask obstacles;
+        
+        
         [SerializeField] private Tilemap tileMap;
         // Start is called before the first frame update
-        void Start()
-        {
+
+        private GhostController _ghostController;
         
+        private static float RoundToNearestHalf(float a)
+        {
+            return Mathf.Round(a * 2f) * 0.5f;
+        }
+
+        private void Start()
+        {
+            _ghostController = GetComponent<GhostController>();
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
             if (Input.GetMouseButtonDown(1))
             {
-                Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-                var tpos = tileMap.WorldToCell(worldPoint);
-
-                var tile = tileMap.GetTile(tpos);
-
-                if (tile)
+                if (Camera.main != null)
                 {
-                    Vector2 target = new Vector2(tpos.x, tpos.y);
-                    GetComponent<GhostController>().StartMovement(target);
+                    Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+                    Vector2 actualPos = new Vector2(RoundToNearestHalf(worldPoint.x), RoundToNearestHalf(worldPoint.y));
+
+                    Collider2D[] colliders = Physics2D.OverlapCircleAll(actualPos, 0.25f, obstacles);
+
+                    if (colliders.Length == 0)
+                    {
+                        _ghostController.StartMovement(actualPos);
+                    }
+                    enabled = false;
+
                 }
-                this.enabled = false;
             }
         }
     }
