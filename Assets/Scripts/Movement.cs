@@ -14,6 +14,8 @@ public class Movement : MonoBehaviour
     public Vector2 nextDirection { get; private set; }
     public Vector3 startingPosition { get; private set; }
 
+
+    private SpriteRenderer _spriteRenderer;
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -23,6 +25,7 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         ResetState();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void ResetState()
@@ -42,12 +45,7 @@ public class Movement : MonoBehaviour
         if (nextDirection != Vector2.zero) {
             SetDirection(nextDirection);
         }
-
-        Transform pacTransform = transform;
-        Vector3 localScale = pacTransform.localScale;
-        localScale = new Vector3(localScale.x * direction.x, localScale.y,
-            localScale.z);
-        pacTransform.localScale = localScale;
+        _spriteRenderer.flipX = nextDirection.x < 0;
     }
 
     private void FixedUpdate()
