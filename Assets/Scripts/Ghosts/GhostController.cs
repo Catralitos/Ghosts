@@ -87,28 +87,28 @@ namespace Ghosts
             {
                 if (!Occupied(Vector2.right) && 
                     (Vector2.Distance(this.rb.position + Vector2.right, objective) < distance ||
-                        distance == 0))
+                        distance == 0.0f))
                 {
                     distance = Vector2.Distance(this.rb.position + Vector2.right, objective);
                     direction = Vector2.right;
                 }
 
                 if (!Occupied(Vector2.left) &&
-                    (Vector2.Distance(this.rb.position + Vector2.left, objective) < distance || distance == 0))
+                    (Vector2.Distance(this.rb.position + Vector2.left, objective) < distance || distance == 0.0f))
                 {
                     distance = Vector2.Distance(this.rb.position + Vector2.left, objective);
                     direction = Vector2.left;
                 }
 
                 if (!Occupied(Vector2.up) &&
-                    (Vector2.Distance(this.rb.position + Vector2.up, objective) < distance || distance == 0))
+                    (Vector2.Distance(this.rb.position + Vector2.up, objective) < distance || distance == 0.0f))
                 {
                     distance = Vector2.Distance(this.rb.position + Vector2.up, objective);
                     direction = Vector2.up;
                 }
 
                 if (!Occupied(Vector2.down) &&
-                    (Vector2.Distance(this.rb.position + Vector2.down, objective) < distance || distance == 0))
+                    (Vector2.Distance(this.rb.position + Vector2.down, objective) < distance || distance == 0.0f))
                 {
                     distance = Vector2.Distance(this.rb.position + Vector2.down, objective);
                     direction = Vector2.down;
@@ -121,7 +121,7 @@ namespace Ghosts
         
 
         private void OnTriggerEnter2D(Collider2D other) {
-           
+
             Node node = other.GetComponent<Node>(); 
 
             if (node != null && this.rb.position != objective)
@@ -136,7 +136,7 @@ namespace Ghosts
                     // If the distance in this direction is greater than the current
                     // max distance then this direction becomes the new farthest
                     if (availableDirection != lastMovingDirection * -1.0f && 
-                        Vector2.Distance(this.rb.position + availableDirection, objective) < distance || distance == 0)
+                        Vector2.Distance(this.rb.position + availableDirection, objective) < distance || distance == 0.0f)
                     {
                         distance = Vector2.Distance(this.rb.position + availableDirection, objective);
                         direction = availableDirection;
