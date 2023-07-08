@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class GhostController : MonoBehaviour
+namespace Ghosts
 {
+    public class GhostController : MonoBehaviour
+    {
 
     public Mind mind;
     public Vector2 lastMovingDirection = Vector2.zero;
@@ -18,10 +18,10 @@ public class GhostController : MonoBehaviour
     public Transform objective;
 
 
-    private void Awake() {
-        this.rb = GetComponent<Rigidbody2D>();
-        this.startingPosition = this.transform.position;
-    }
+        private void Awake() {
+            this.rb = GetComponent<Rigidbody2D>();
+            this.startingPosition = this.transform.position;
+        }
 
     public void SetDirection(Vector2 direction)
     {
@@ -29,11 +29,11 @@ public class GhostController : MonoBehaviour
         this.direction = direction;
     }
 
-    public bool Occupied(Vector2 direction)
-    {
-        RaycastHit2D hit = Physics2D.BoxCast(this.transform.position, Vector2.one * 0.75f, 0.0f, direction, 1.5f, this.obstacleLayer);
-        return hit.collider != null;
-    }
+        public bool Occupied(Vector2 direction)
+        {
+            RaycastHit2D hit = Physics2D.BoxCast(this.transform.position, Vector2.one * 0.75f, 0.0f, direction, 1.5f, this.obstacleLayer);
+            return hit.collider != null;
+        }
 
     private void FixedUpdate() {
         if (this.rb.position.x == objective.position.x && this.rb.position.y == objective.position.y)
