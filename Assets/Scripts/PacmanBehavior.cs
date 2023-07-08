@@ -5,6 +5,7 @@ public abstract class PacmanBehavior : MonoBehaviour
     public Pacman pacman { get; private set; }
     public float pelletWeight;
     public float ghostWeight;
+    public float sameDirectionPenalty;
 
     private void Awake()
     {

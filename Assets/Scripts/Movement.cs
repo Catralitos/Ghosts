@@ -59,13 +59,11 @@ public class Movement : MonoBehaviour
         // set when it does become available
         if (forced || !Occupied(direction))
         {
-            Debug.Log("not occupied");
             this.direction = direction;
             nextDirection = Vector2.zero;
         }
         else
         {
-            Debug.Log("ya occupied");
             nextDirection = direction;
         }
     }
