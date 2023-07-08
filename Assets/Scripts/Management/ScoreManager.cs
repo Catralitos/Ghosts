@@ -1,3 +1,4 @@
+using System;
 using Events.ScriptableObjects;
 using Management.ScriptableObjects;
 using UnityEngine;
@@ -6,7 +7,7 @@ namespace Management
 {
     public class ScoreManager : MonoBehaviour
     {
-        public ScoreHolderSO ScoreHolder;
+        public ScoreHolderSO scoreHolder;
     
         [Header("Listening on")] 
         public VoidEventChannelSO pelletEatenEvent;
@@ -25,15 +26,20 @@ namespace Management
             pelletEatenEvent.OnEventRaised -= EatPellet;
             powerPelletEatenEvent.OnEventRaised -= EatPowerPellet;
         }
-    
+
+        private void Start()
+        {
+            scoreHolder.Init();
+        }
+
         private void EatPellet()
         {
-           ScoreHolder.DecreaseScore(10);
+           scoreHolder.DecreaseScore(10);
         }
 
         private void EatPowerPellet()
         {
-            ScoreHolder.DecreaseScore(50);
+            scoreHolder.DecreaseScore(50);
         }
     }
 }

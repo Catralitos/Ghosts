@@ -78,5 +78,15 @@ public class Movement : MonoBehaviour
         RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0f, direction, 1.5f, obstacleLayer);
         return hit.collider != null;
     }
+    
+    void OnDrawGizmosSelected()
+    {
+        // Draw a semitransparent red cube at the transforms position
+        Gizmos.color = new Color(1, 0, 0, 0.5f);
+        Gizmos.DrawCube(transform.position + Vector3.up * 1.5f, Vector3.one * 0.75f);
+        Gizmos.DrawCube(transform.position + Vector3.down * 1.5f, Vector3.one * 0.75f);
+        Gizmos.DrawCube(transform.position + Vector3.left * 1.5f, Vector3.one * 0.75f);
+        Gizmos.DrawCube(transform.position + Vector3.right * 1.5f, Vector3.one * 0.75f);
+    }
 
 }
