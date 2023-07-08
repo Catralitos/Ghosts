@@ -32,8 +32,9 @@ namespace UI.Menus
             }
         }
 
-        private static void Retry()
+        private void Retry()
         {
+            scoreHolder.Init();
             SceneManager.LoadScene(1);
         }
     

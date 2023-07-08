@@ -1,4 +1,5 @@
 ﻿using Audio;
+using Management.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -46,7 +47,9 @@ namespace UI.Menus
         /// The audio manager
         /// </summary>
         private AudioManager _audioManager;
-
+        
+        [Header("Score Holder")] public ScoreHolderSO scoreHolder;
+        
         /// <summary>
         /// Starts this instance.
         /// </summary>
@@ -64,14 +67,16 @@ namespace UI.Menus
         /// <summary>
         /// Starts the game.
         /// </summary>
-        private static void StartGame()
+        private void StartGame()
         {
-            SceneManager.LoadScene(1);
+            scoreHolder.Init();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         
-        private static void StartGame2()
+        private void StartGame2()
         {
-            SceneManager.LoadScene(2);
+            scoreHolder.Init();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
         }
 
         /// <summary>
