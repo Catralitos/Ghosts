@@ -15,9 +15,17 @@ namespace Pacman
         public LayerMask ghostLayer;
         public LayerMask wallLayer;
         public LayerMask nodeLayer;
-        public VoidEventChannelSO pacmanEatenEvent;
+
+        public float powerPelletTime = 8.0f;
+        
+        [Header("Listening on ")] 
         public VoidEventChannelSO powerPelletEatenEvent;
+
+        [Header("Broadcasting on ")]
+        public VoidEventChannelSO pacmanEatenEvent;
         public IntEventChannelSO ghostEatenEvent;
+        public VoidEventChannelSO pelletEnded;
+        
         public int ghostMultiplier = 1;
 
         private void OnEnable()
@@ -77,10 +85,11 @@ namespace Pacman
 
         private void EatPowerPellet() {
             scatter.Disable();
-            Invoke(nameof(DisableChase), 8.0f);
+            Invoke(nameof(DisableChase), powerPelletTime);
         }
 
         private void DisableChase() {
+            pelletEnded.RaiseEvent();
             ghostMultiplier = 1;
             chase.Disable();
         }
