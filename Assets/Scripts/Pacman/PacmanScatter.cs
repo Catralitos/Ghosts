@@ -5,17 +5,23 @@ namespace Pacman
 {
     public class PacmanScatter : PacmanBehavior
     {
+        private float ghostSightCooldown;
+
         private void OnDisable()
         {
             pacman.chase.Enable();
         }
 
         private void FixedUpdate() {
+            if (ghostSightCooldown > 0.0f)
+                ghostSightCooldown -= Time.fixedDeltaTime;
+
             RaycastHit2D ghostHit = Physics2D.BoxCast(transform.position, Vector2.one * 0.35f, 0f, pacman.movement.direction, 5.0f, pacman.ghostLayer | pacman.wallLayer | pacman.nodeLayer);
 
-            if (ghostHit.collider != null && (pacman.ghostLayer & 1 << ghostHit.collider.gameObject.layer) == 1 << ghostHit.collider.gameObject.layer) {
-                Debug.Log("AHHHHH a ghost");
+            if (ghostSightCooldown <= 0.0f && ghostHit.collider != null && (pacman.ghostLayer & 1 << ghostHit.collider.gameObject.layer) == 1 << ghostHit.collider.gameObject.layer) {
+                //Debug.Log("AHHHHH a ghost");
                 pacman.movement.SetDirection(pacman.movement.direction * -1.0f);
+                ghostSightCooldown = 0.5f;
             }
         }
     
