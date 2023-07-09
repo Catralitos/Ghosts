@@ -84,7 +84,7 @@ namespace Ghosts
         }
 
         private void Update() {
-            if (target != null)
+            if (target != null && gameObject.activeSelf)
             {
                 _instatiatedLight.transform.position = target.position;
                 _instatiatedLight.intensity = 100;
