@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 7080570696839095045}
   - component: {fileID: 1736623156034299354}
   - component: {fileID: 5724270474730526987}
-  m_Layer: 8
-  m_Name: ColliderHolder
+  - component: {fileID: 1138825120731917851}
+  - component: {fileID: 1730121747226888473}
+  m_Layer: 12
+  m_Name: Clickable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,7 +96,40 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.5
+--- !u!114 &1138825120731917851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2318817959459753624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08994eac719df6b4594a55f9dc3c3687, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mind: {fileID: 0}
+  go: {fileID: 4870244658595339207}
+--- !u!255 &1730121747226888473
+FixedJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2318817959459753624}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 1393924958306044625}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_BreakAction: 0
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_DampingRatio: 0
+  m_Frequency: 0
 --- !u!1 &4587398946129698815
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,7 +255,7 @@ GameObject:
   - component: {fileID: 4870244658595339207}
   - component: {fileID: 6743510922051948972}
   - component: {fileID: 4217992079078233407}
-  m_Layer: 12
+  m_Layer: 8
   m_Name: Ghost_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +277,7 @@ Transform:
   - {fileID: 7932946558603960953}
   - {fileID: 7080570696839095045}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1393924958306044625
 Rigidbody2D:
@@ -305,7 +340,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 0.5
 --- !u!114 &4870244658595339207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,7 +368,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6e32b0964ae42343bf8a3cc7d8d0dc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mind: {fileID: 0}
   speed: 3
   speedMultiplier: 1
   direction: {x: 0, y: 0}

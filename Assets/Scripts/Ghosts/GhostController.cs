@@ -40,7 +40,7 @@ namespace Ghosts
             if (Mathf.Abs(transform.position.x - RoundToNearestHalf(transform.position.x)) <= 0.2f && 
                 Mathf.Abs(transform.position.y - RoundToNearestHalf(transform.position.y)) <= 0.2f)
             {
-                Debug.Log("The position was:" + transform.position);
+                //Debug.Log("The position was:" + transform.position);
                 transform.position = new Vector3(RoundToNearestHalf(transform.position.x), RoundToNearestHalf(transform.position.y), transform.position.z);
             }
 
@@ -96,13 +96,7 @@ namespace Ghosts
                 rb.MovePosition(moveTowards);
             }
         }
-
-        private void OnMouseDown()
-        {
-            mind.ChangeGhost(gameObject);
-            go.enabled = true;
-            Debug.Log("Picked " + gameObject);
-        }
+        
 
         private float DistanceToPoint(Vector2 pos, Vector2 target)
         {
@@ -152,7 +146,13 @@ namespace Ghosts
                 SetDirection(direction);
             }
         }
-
+        
+        private void OnMouseDown()
+        {
+            mind.ChangeGhost(gameObject);
+            go.enabled = true;
+            Debug.Log("Picked " + gameObject);
+        }
         
 
         private void OnTriggerEnter2D(Collider2D other) {
