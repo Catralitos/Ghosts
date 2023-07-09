@@ -105,7 +105,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: WinJingle
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: f17b27199a0763b4e96dad03463db061, type: 3}
     volume: 0.2
     pitch: 1
     loop: 0
