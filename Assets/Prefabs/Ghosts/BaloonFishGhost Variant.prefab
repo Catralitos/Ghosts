@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &8727971228430253934
+--- !u!1001 &8658613346580911742
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,13 +8,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2698632553199687268, guid: 44f02dd70095f87468ea62a19e38f2bd, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3907275153523261388, guid: 44f02dd70095f87468ea62a19e38f2bd, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3907275153523261388, guid: 44f02dd70095f87468ea62a19e38f2bd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.5
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3907275153523261388, guid: 44f02dd70095f87468ea62a19e38f2bd, type: 3}
       propertyPath: m_LocalPosition.y
@@ -52,9 +56,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4217992079078233407, guid: 44f02dd70095f87468ea62a19e38f2bd, type: 3}
+      propertyPath: m_Color.g
+      value: 0.48271224
+      objectReference: {fileID: 0}
+    - target: {fileID: 4421626055782106379, guid: 44f02dd70095f87468ea62a19e38f2bd, type: 3}
+      propertyPath: m_Color.g
+      value: 0.48235294
+      objectReference: {fileID: 0}
+    - target: {fileID: 4421626055782106379, guid: 44f02dd70095f87468ea62a19e38f2bd, type: 3}
+      propertyPath: m_Intensity
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4851987176963690863, guid: 44f02dd70095f87468ea62a19e38f2bd, type: 3}
       propertyPath: m_Name
-      value: OctopusGhost Variant
+      value: BaloonFishGhost Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851987176963690863, guid: 44f02dd70095f87468ea62a19e38f2bd, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7080570696839095045, guid: 44f02dd70095f87468ea62a19e38f2bd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
