@@ -1,4 +1,5 @@
 using UnityEngine;
+using Events.ScriptableObjects;
 
 namespace Pacman
 {
@@ -7,10 +8,34 @@ namespace Pacman
     public class PacmanPlayer : MonoBehaviour
     {
         public Movement movement { get; private set; }
-        public int points = 200;
+
+        public float powerPelletTime = 8.0f;
+        public LayerMask ghostLayer;
+        
+        [Header("Listening on ")] 
+        public VoidEventChannelSO powerPelletEatenEvent;
+
+        [Header("Broadcasting on ")]
+        public VoidEventChannelSO pacmanEatenEvent;
+        public IntEventChannelSO ghostEatenEvent;
+        public VoidEventChannelSO pelletEnded;
+        
+        
+        public int ghostMultiplier = 1;
 
         private float horizontal;
         private float vertical;
+        private bool powerPelletEnabled;
+
+        private void OnEnable()
+        {
+            powerPelletEatenEvent.OnEventRaised += EatPowerPellet;
+        }
+    
+        private void OnDisable()
+        {
+            powerPelletEatenEvent.OnEventRaised -= EatPowerPellet;
+        }
 
         private void Awake()
         {
@@ -51,17 +76,29 @@ namespace Pacman
             transform.position = position;
         }
 
-        /* private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Pac-Man"))
+        private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (frightened.enabled) {
-                FindObjectOfType<GameManager>().GhostEaten(this);
-            } else {
-                FindObjectOfType<GameManager>().PacmanEaten();
+            if ((ghostLayer & 1 << collision.gameObject.layer) == 1 << collision.gameObject.layer)
+            {
+                if (!powerPelletEnabled) {
+                    pacmanEatenEvent.RaiseEvent();
+                    gameObject.SetActive(false);
+                }
+                else {
+                    ghostEatenEvent.RaiseEvent(ghostMultiplier);
+                    ghostMultiplier *= 2;
+                    Destroy(collision.gameObject);
+                }
             }
         }
-    } */
 
+        private void EatPowerPellet() {
+            powerPelletEnabled = true;
+            Invoke(nameof(DisableChase), powerPelletTime);
+        }
+
+        private void DisableChase() {
+            powerPelletEnabled = false;
+        }
     }
 }
