@@ -66,11 +66,11 @@ namespace Pacman
 
                     foreach(Transform pellet in pacman.pelletMap) {
                         if (pellet.gameObject.activeSelf)
-                            score += pelletWeight / (pellet.position - newPosition).sqrMagnitude;
+                            score += pelletWeight / Mathf.Max(0.05f, (pellet.position - newPosition).sqrMagnitude);
                     }
                     foreach(Transform ghost in pacman.ghosts) {
                         if (ghost != null) {
-                            float test = ghostWeight / Mathf.Pow((ghost.position - newPosition).sqrMagnitude, 1.0f);
+                            float test = ghostWeight / Mathf.Max(0.05f, (ghost.position - newPosition).sqrMagnitude);
                             //Debug.Log("Ghost score: " + test);
                             score -= test;
                         }
@@ -78,15 +78,13 @@ namespace Pacman
 
                     Debug.Log("///////////////////////////////");
                     Debug.Log(availableDirection);
-                    Debug.Log("distanceToClosestPellet " + distanceToClosestPellet);
-                    Debug.Log((closestPellet.position - newPosition).sqrMagnitude);
 
                     if (distanceToClosestPellet < 2.0f) {
-                        float targetPelletBonus = targetPelletWeight * distanceToClosestPellet * distanceToClosestPellet / (closestPellet.position - newPosition).sqrMagnitude;
+                        float targetPelletBonus = targetPelletWeight * distanceToClosestPellet * distanceToClosestPellet / Mathf.Max(0.05f, (closestPellet.position - newPosition).sqrMagnitude);
                         
                         if (!float.IsInfinity(targetPelletBonus)) {
                             Debug.Log(targetPelletBonus);
-                            score += targetPelletWeight * distanceToClosestPellet * distanceToClosestPellet / (closestPellet.position - newPosition).sqrMagnitude;
+                            score += targetPelletBonus;
                         }
                     }
 
@@ -100,7 +98,7 @@ namespace Pacman
                         direction = availableDirection;
                         maxScore = score;
                     }
-                    //Debug.Log(score);
+                    Debug.Log(score);
                 }
 
                 //Debug.Log(direction);

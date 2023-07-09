@@ -337,6 +337,9 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 64
+  ghostLayer:
+    serializedVersion: 2
+    m_Bits: 256
   startGameEvent: {fileID: 11400000, guid: 953991aeb135f4944a06065a86df5a26, type: 2}
   stopGameEvent: {fileID: 11400000, guid: 8bfb891dbba796b4683861eed4d3ad8f, type: 2}
   spriteChild: {fileID: 1156850182022565754}
