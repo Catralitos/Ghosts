@@ -12,6 +12,8 @@ namespace Management.ScriptableObjects
         public int CurrentGhostScore { get; private set; }
         public List<int> PastScores { get; private set; }
 
+        public bool singlePlayerGame = true;
+
         public void Init()
         {
             CurrentPacmanScore = 0;
@@ -38,7 +40,7 @@ namespace Management.ScriptableObjects
         {
             PastScores ??= new List<int>();
             PastScores.Add(CurrentGhostScore);
-            SceneManager.LoadScene("HighScoreScreen");
+            SceneManager.LoadScene(singlePlayerGame ? 3 : 4);
         }
         
         public int GetLastScore()

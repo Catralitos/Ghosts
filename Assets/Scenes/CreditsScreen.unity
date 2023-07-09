@@ -945,6 +945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c494c885ffcff2d4d838bc7aca3c2f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreHolder: {fileID: 11400000, guid: 407d88e5c6b057847bc1472dc8d35a36, type: 2}
   retryButton: {fileID: 1118423205}
   backToTitleButton: {fileID: 529771875}
   menuLoadedEvent: {fileID: 11400000, guid: 79df6d45159612a4eb1d2f71531e0abe, type: 2}

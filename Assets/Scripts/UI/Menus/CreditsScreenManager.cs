@@ -1,5 +1,6 @@
 using Audio;
 using Events.ScriptableObjects;
+using Management.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,6 +9,8 @@ namespace UI.Menus
 {
     public class CreditsScreenManager : MonoBehaviour
     {
+        public ScoreHolderSO scoreHolder;
+        
         [Header("Buttons")] public Button retryButton;
         public Button backToTitleButton;
 
@@ -20,14 +23,15 @@ namespace UI.Menus
             menuLoadedEvent.RaiseEvent();
         }
 
-        private static void RetryGame()
+        private void RetryGame()
         {
-            SceneManager.LoadScene(2);
+            scoreHolder.Init();
+            SceneManager.LoadScene(scoreHolder.singlePlayerGame ? 1 : 2);
         }
 
         private static void BackToTitle()
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(0);
         }
         
     }

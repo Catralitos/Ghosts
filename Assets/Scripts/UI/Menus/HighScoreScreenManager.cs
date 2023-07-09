@@ -20,7 +20,7 @@ namespace UI.Menus
         
         private void Start()
         {
-            retryButton.onClick.AddListener(Retry);
+            retryButton.onClick.AddListener(RetryGame);
             creditsButton.onClick.AddListener(LoadCredits);
         
             List<int> highScores = scoreHolder.GetHighScores(10);
@@ -36,15 +36,16 @@ namespace UI.Menus
             menuLoadedEvent.RaiseEvent();
         }
 
-        private void Retry()
+        private void RetryGame()
         {
             scoreHolder.Init();
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(scoreHolder.singlePlayerGame ? 1 : 2);
         }
+
     
         private static void LoadCredits()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene(4);
         }
 
     }
