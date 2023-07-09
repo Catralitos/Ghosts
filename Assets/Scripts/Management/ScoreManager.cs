@@ -23,6 +23,8 @@ namespace Management
         public VoidEventChannelSO startGameEvent;
         public VoidEventChannelSO stopGameEvent;
 
+        private int _pelletsEaten;
+        private int _powerPelletsEaten;
         private int _ghostsEaten;
         
         private void OnEnable()
@@ -47,7 +49,7 @@ namespace Management
             scoreHolder.Init();
             stopGameEvent.RaiseEvent();
             startJingleEvent.RaiseEvent();
-            Invoke(nameof(StartGame), 5f);
+            Invoke(nameof(StartGame), 2f);
         }
 
         private void StartGame()
@@ -59,11 +61,25 @@ namespace Management
         private void EatPellet()
         {
            scoreHolder.DecreaseScore(10);
+           _pelletsEaten++;
+           if (_pelletsEaten >= 244 && _powerPelletsEaten >= 4)
+           {
+               stopGameEvent.RaiseEvent();
+               loseJingleEvent.RaiseEvent();
+               Invoke(nameof(EndGame), 8f);
+           }
         }
 
         private void EatPowerPellet()
         {
             scoreHolder.DecreaseScore(50);
+            _powerPelletsEaten++;
+            if (_pelletsEaten >= 244 && _powerPelletsEaten >= 4)
+            {
+                stopGameEvent.RaiseEvent();
+                loseJingleEvent.RaiseEvent();
+                Invoke(nameof(EndGame), 8f);
+            }
         }
 
         private void EatPacman()

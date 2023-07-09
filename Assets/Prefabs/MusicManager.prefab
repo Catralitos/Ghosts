@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1721858528176932211
 MonoBehaviour:
@@ -99,7 +99,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: StartJingle
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 40e2866b506ec624dbc736b9522ed694, type: 3}
     volume: 0.2
     pitch: 1
     loop: 0
