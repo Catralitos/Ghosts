@@ -13,11 +13,13 @@ namespace Management
         public VoidEventChannelSO pelletEatenEvent;
         public VoidEventChannelSO powerPelletEatenEvent;
         public VoidEventChannelSO ghostEatenEvent;
+        public VoidEventChannelSO pacmanEatenEvent;
 
         private void OnEnable()
         {
             pelletEatenEvent.OnEventRaised += EatPellet;
             powerPelletEatenEvent.OnEventRaised += EatPowerPellet;
+            pacmanEatenEvent.OnEventRaised += EatPacman;
 
         }
     
@@ -25,6 +27,7 @@ namespace Management
         {
             pelletEatenEvent.OnEventRaised -= EatPellet;
             powerPelletEatenEvent.OnEventRaised -= EatPowerPellet;
+            pacmanEatenEvent.OnEventRaised -= EatPacman;
         }
 
         private void Start()
@@ -40,6 +43,12 @@ namespace Management
         private void EatPowerPellet()
         {
             scoreHolder.DecreaseScore(50);
+        }
+
+        private void EatPacman()
+        {
+            //scoreHolder.IncreaseScore(1000); Would be cool to give extra score depending on how fast you eat pac-man
+            scoreHolder.EndGame();
         }
     }
 }

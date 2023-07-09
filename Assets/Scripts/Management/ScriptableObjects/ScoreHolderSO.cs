@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Management.ScriptableObjects
 {
@@ -27,11 +28,17 @@ namespace Management.ScriptableObjects
             CurrentPacmanScore += amount;
             CurrentGhostScore -= amount;
         }
+
+        public void IncreaseScore(int amount)
+        {
+            CurrentGhostScore += amount;
+        }
         
         public void EndGame()
         {
             PastScores ??= new List<int>();
             PastScores.Add(CurrentGhostScore);
+            SceneManager.LoadScene("HighScoreScreen");
         }
         
         public int GetLastScore()

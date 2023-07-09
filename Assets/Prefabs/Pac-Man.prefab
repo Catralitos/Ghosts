@@ -359,6 +359,10 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 64
+  nodeLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  pacmanEatenEvent: {fileID: 11400000, guid: 8566f3d96c68cbe4d932d7fb238ca4fa, type: 2}
   points: 200
 --- !u!114 &4564872043787248471
 MonoBehaviour:
