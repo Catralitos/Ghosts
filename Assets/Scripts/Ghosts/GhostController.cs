@@ -99,8 +99,9 @@ namespace Ghosts
 
         private void OnMouseDown()
         {
-                mind.ChangeGhost(this.gameObject);
-                go.enabled = true;
+            mind.ChangeGhost(gameObject);
+            go.enabled = true;
+            Debug.Log("Picked " + gameObject);
         }
 
         private float DistanceToPoint(Vector2 pos, Vector2 target)
@@ -160,13 +161,13 @@ namespace Ghosts
 
             if (node != null && Math.Abs(transform.position.x - objective.x) > 0.1f && Math.Abs(transform.position.y - objective.y) > 0.1f)
             {
-                Debug.Log("Entrou no node" + node.transform.position);
+                //Debug.Log("Entrou no node");
                 Vector2 d = Vector2.zero;
                 float distance = 0.0f;
                 
                 foreach (Vector2 availableDirection in node.availableDirections)
                 {
-                    Debug.Log("availableDirection is: " + availableDirection);
+                    //Debug.Log("availableDirection is: " + availableDirection);
                     // If the distance in this direction is greater than the current
                     // max distance then this direction becomes the new farthest
                     if (availableDirection != this.direction * -1 && 
