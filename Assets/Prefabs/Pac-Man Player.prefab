@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8094974405856279583
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1324835536147065699, guid: ca46e0e107e4ec342a7bbbef37f5cdf2, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1324835536147065699, guid: ca46e0e107e4ec342a7bbbef37f5cdf2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1324835536147065699, guid: ca46e0e107e4ec342a7bbbef37f5cdf2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1324835536147065699, guid: ca46e0e107e4ec342a7bbbef37f5cdf2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1324835536147065699, guid: ca46e0e107e4ec342a7bbbef37f5cdf2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1324835536147065699, guid: ca46e0e107e4ec342a7bbbef37f5cdf2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1324835536147065699, guid: ca46e0e107e4ec342a7bbbef37f5cdf2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1324835536147065699, guid: ca46e0e107e4ec342a7bbbef37f5cdf2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1324835536147065699, guid: ca46e0e107e4ec342a7bbbef37f5cdf2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1324835536147065699, guid: ca46e0e107e4ec342a7bbbef37f5cdf2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1324835536147065699, guid: ca46e0e107e4ec342a7bbbef37f5cdf2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5790910747362119593, guid: ca46e0e107e4ec342a7bbbef37f5cdf2, type: 3}
+      propertyPath: m_Name
+      value: Pac-Man Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346931588162096299, guid: ca46e0e107e4ec342a7bbbef37f5cdf2, type: 3}
+      propertyPath: m_Radius
+      value: 0.4
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4564872043787248471, guid: ca46e0e107e4ec342a7bbbef37f5cdf2, type: 3}
+    - {fileID: 8505764397766522339, guid: ca46e0e107e4ec342a7bbbef37f5cdf2, type: 3}
+    - {fileID: 7079143036547928851, guid: ca46e0e107e4ec342a7bbbef37f5cdf2, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5790910747362119593, guid: ca46e0e107e4ec342a7bbbef37f5cdf2, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 719411905620970038}
+  m_SourcePrefab: {fileID: 100100000, guid: ca46e0e107e4ec342a7bbbef37f5cdf2, type: 3}
+--- !u!1 &2308748957787091894 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5790910747362119593, guid: ca46e0e107e4ec342a7bbbef37f5cdf2, type: 3}
+  m_PrefabInstance: {fileID: 8094974405856279583}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &719411905620970038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2308748957787091894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a811746d1fa064bbec901a7131ba0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points: 200
