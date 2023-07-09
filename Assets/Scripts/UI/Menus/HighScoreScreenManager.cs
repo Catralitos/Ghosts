@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Events.ScriptableObjects;
 using Management.ScriptableObjects;
 using TMPro;
 using UnityEngine;
@@ -15,6 +16,8 @@ namespace UI.Menus
         public Button retryButton;
         public Button creditsButton;
     
+        [Header("Broadcasting on")] public VoidEventChannelSO menuLoadedEvent;
+        
         private void Start()
         {
             retryButton.onClick.AddListener(Retry);
@@ -30,6 +33,7 @@ namespace UI.Menus
             {
                 highScoreTexts[j].gameObject.SetActive(false);
             }
+            menuLoadedEvent.RaiseEvent();
         }
 
         private void Retry()
