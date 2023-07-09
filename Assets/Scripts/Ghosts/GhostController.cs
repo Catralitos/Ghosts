@@ -84,6 +84,17 @@ namespace Ghosts
         }
 
         private void Update() {
+            if (target != null)
+            {
+                _instatiatedLight.transform.position = target.position;
+                _instatiatedLight.intensity = 100;
+            }
+            else
+            {
+                _instatiatedLight.transform.position = transform.position;
+                _instatiatedLight.intensity = 0;
+            }
+            
             if (Mathf.Abs(transform.position.x - target.position.x) <= 0.1f &&
                 Mathf.Abs(transform.position.y - target.position.y) <= 0.1f)
             {
