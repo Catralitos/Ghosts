@@ -40,6 +40,18 @@ namespace Pacman
                 transform.position = other.transform.position;
                 float maxScore = float.MinValue;
 
+                Transform closestPellet = pacman.pelletMap.GetChild(0);
+                float distanceToClosestPellet = float.MaxValue;
+
+                foreach(Transform pellet in pacman.pelletMap) {
+                    float distanceToPellet = (pellet.position - transform.position).sqrMagnitude;
+                    if (pellet.gameObject.activeSelf
+                    && distanceToPellet < distanceToClosestPellet) {
+                        closestPellet = pellet;
+                        distanceToClosestPellet = distanceToPellet;
+                    }
+                }
+
                 //Debug.Log("-------------------------------------------------------");
                 // Find the available direction that moves farthest from pacman
                 foreach (Vector2 availableDirection in node.availableDirections)
@@ -63,6 +75,8 @@ namespace Pacman
                             score -= test;
                         }
                     }
+
+                    score += targetPelletWeight * distanceToClosestPellet * distanceToClosestPellet / (closestPellet.position - newPosition).sqrMagnitude;
 
                     if (availableDirection == pacman.movement.direction * -1.0f) {
                         score -= sameDirectionPenalty;

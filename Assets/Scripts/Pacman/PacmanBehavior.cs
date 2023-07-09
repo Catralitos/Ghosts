@@ -6,6 +6,7 @@ namespace Pacman
     {
         public Pacman pacman { get; private set; }
         public float pelletWeight;
+        public float targetPelletWeight;
         public float ghostWeight;
         public float sameDirectionPenalty;
 
