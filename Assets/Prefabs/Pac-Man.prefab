@@ -362,9 +362,11 @@ MonoBehaviour:
   nodeLayer:
     serializedVersion: 2
     m_Bits: 2048
-  pacmanEatenEvent: {fileID: 11400000, guid: 8566f3d96c68cbe4d932d7fb238ca4fa, type: 2}
+  powerPelletTime: 8
   powerPelletEatenEvent: {fileID: 11400000, guid: 722e7009619492d4f8e944e55b858f91, type: 2}
+  pacmanEatenEvent: {fileID: 11400000, guid: 8566f3d96c68cbe4d932d7fb238ca4fa, type: 2}
   ghostEatenEvent: {fileID: 11400000, guid: 20a28bfb7b385f74fa49adf7484285a7, type: 2}
+  pelletEnded: {fileID: 0}
   ghostMultiplier: 1
 --- !u!114 &4564872043787248471
 MonoBehaviour:
@@ -379,8 +381,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pelletWeight: 10
-  ghostWeight: 100
-  sameDirectionPenalty: 200
+  targetPelletWeight: 1
+  ghostWeight: 250
+  sameDirectionPenalty: 80
 --- !u!114 &8505764397766522339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,8 +397,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pelletWeight: 10
+  targetPelletWeight: 1
   ghostWeight: 500
-  sameDirectionPenalty: 200
+  sameDirectionPenalty: 80
 --- !u!212 &7941096347877517929
 SpriteRenderer:
   m_ObjectHideFlags: 0
