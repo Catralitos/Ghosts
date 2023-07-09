@@ -36,6 +36,8 @@ namespace Ghosts
         {
             pelletEatenEvent.OnEventRaised -= GetScared;
             pelletEndedEvent.OnEventRaised -= StopScared;
+            _instatiatedLight.transform.position = transform.position;
+            _instatiatedLight.intensity = 0;
         }
 
         private void OnDestroy()

@@ -341,7 +341,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 35e51b5ab2f3a054984e211bb75ebea1, type: 3}
+  m_Sprite: {fileID: -512184816, guid: 0cf6bea80222a0348960647065179f06, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -790,7 +790,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 35e51b5ab2f3a054984e211bb75ebea1, type: 3}
+  m_Sprite: {fileID: -512184816, guid: 0cf6bea80222a0348960647065179f06, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -945,6 +945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c494c885ffcff2d4d838bc7aca3c2f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreHolder: {fileID: 11400000, guid: 407d88e5c6b057847bc1472dc8d35a36, type: 2}
   retryButton: {fileID: 1118423205}
   backToTitleButton: {fileID: 529771875}
   menuLoadedEvent: {fileID: 11400000, guid: 79df6d45159612a4eb1d2f71531e0abe, type: 2}

@@ -67,13 +67,14 @@ namespace UI.Menus
         private void StartGame()
         {
             scoreHolder.Init();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene(1);
         }
         
         private void StartGame2()
         {
             scoreHolder.Init();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+            scoreHolder.singlePlayerGame = false;
+            SceneManager.LoadScene(2);
         }
 
         /// <summary>
