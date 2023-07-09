@@ -1,6 +1,7 @@
 using System;
 using Maze_Elements;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace Ghosts
 {
@@ -21,13 +22,22 @@ namespace Ghosts
         [SerializeField] private Transform teleporter_l;
         [SerializeField] private Transform teleporter_r;
 
-
+        public GameObject lightPrefab;
+        private Light2D _instatiatedLight;
         private void Awake()
         {
             this.rb = GetComponent<Rigidbody2D>();
             this.startingPosition = this.transform.position;
             this.objective = this.startingPosition;
             this.go = GetComponent<GhostOrderer>();
+        }
+
+        private void Start()
+        {
+            GameObject instantiated = Instantiate(lightPrefab, transform.position, Quaternion.identity);
+            _instatiatedLight = instantiated.GetComponent<Light2D>();
+            _instatiatedLight.color = GetComponentInChildren<Light2D>().color;
+            _instatiatedLight.intensity = 0;
         }
 
         public void SetDirection(Vector2 direction)
@@ -40,7 +50,7 @@ namespace Ghosts
             if (Mathf.Abs(transform.position.x - RoundToNearestHalf(transform.position.x)) <= 0.2f && 
                 Mathf.Abs(transform.position.y - RoundToNearestHalf(transform.position.y)) <= 0.2f)
             {
-                Debug.Log("The position was:" + transform.position);
+                //Debug.Log("The position was:" + transform.position);
                 transform.position = new Vector3(RoundToNearestHalf(transform.position.x), RoundToNearestHalf(transform.position.y), transform.position.z);
             }
 
@@ -69,13 +79,17 @@ namespace Ghosts
             return hit.collider != null;
         }
 
-        private void Update() {
+        private void Update()
+        {
+            _instatiatedLight.transform.position = objective;
             if (nextDirection != Vector2.zero)
             {
+                _instatiatedLight.intensity = 100;
                 SetDirection(nextDirection);
             }
             if (Math.Abs(transform.position.x - objective.x) <= 0.1f && Math.Abs(transform.position.y - objective.y) <= 0.1f)
             {
+                _instatiatedLight.intensity = 0;
                 this.direction = Vector2.zero;
                 this.nextDirection = Vector2.zero;
                 rb.velocity = Vector2.zero;
@@ -96,12 +110,7 @@ namespace Ghosts
                 rb.MovePosition(moveTowards);
             }
         }
-
-        private void OnMouseDown()
-        {
-                mind.ChangeGhost(this.gameObject);
-                go.enabled = true;
-        }
+        
 
         private float DistanceToPoint(Vector2 pos, Vector2 target)
         {
@@ -151,7 +160,13 @@ namespace Ghosts
                 SetDirection(direction);
             }
         }
-
+        
+        private void OnMouseDown()
+        {
+            mind.ChangeGhost(gameObject);
+            go.enabled = true;
+            Debug.Log("Picked " + gameObject);
+        }
         
 
         private void OnTriggerEnter2D(Collider2D other) {
@@ -160,13 +175,13 @@ namespace Ghosts
 
             if (node != null && Math.Abs(transform.position.x - objective.x) > 0.1f && Math.Abs(transform.position.y - objective.y) > 0.1f)
             {
-                Debug.Log("Entrou no node" + node.transform.position);
+                //Debug.Log("Entrou no node");
                 Vector2 d = Vector2.zero;
                 float distance = 0.0f;
                 
                 foreach (Vector2 availableDirection in node.availableDirections)
                 {
-                    Debug.Log("availableDirection is: " + availableDirection);
+                    //Debug.Log("availableDirection is: " + availableDirection);
                     // If the distance in this direction is greater than the current
                     // max distance then this direction becomes the new farthest
                     if (availableDirection != this.direction * -1 && 
