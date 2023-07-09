@@ -20,7 +20,7 @@ namespace Management.ScriptableObjects
             //4 power pellets worth 50 points
             //And at 4 opportunities to eat 4 ghosts, the first is 200 and doubles with each ghost
             //That's the maximum score (sans bonus fruits) you can get in a Pacman maze
-            CurrentGhostScore = 246 * 10 + 4 * 50 + 4 * (200 + 400 + 800 + 1600);
+            CurrentGhostScore = 246 * 10 + 4 * 50 + (200 + 400 + 800 + 1600);
         }
         
         public void DecreaseScore(int amount)
