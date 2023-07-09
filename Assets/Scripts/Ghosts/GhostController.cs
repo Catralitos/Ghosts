@@ -54,6 +54,11 @@ namespace Ghosts
             _instatiatedLight.intensity = 0;
         }
 
+        private void OnDestroy()
+        {
+            Destroy(_instatiatedLight.gameObject);
+        }
+
         private void Awake()
         {
             this.startingPosition = this.transform.position;

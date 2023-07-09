@@ -78,7 +78,7 @@ namespace Pacman
                 else {
                     ghostEatenEvent.RaiseEvent(ghostMultiplier);
                     ghostMultiplier *= 2;
-                    collision.gameObject.SetActive(false);
+                    Destroy(collision.gameObject);
                 }
             }
         }

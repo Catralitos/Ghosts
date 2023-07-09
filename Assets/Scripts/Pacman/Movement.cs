@@ -18,6 +18,8 @@ namespace Pacman
 
         public Transform spriteChild;
         private Vector3 _originalScale;
+
+        public bool stopped;
         private void Awake()
         {
             rigidbody = GetComponent<Rigidbody2D>();
@@ -60,9 +62,11 @@ namespace Pacman
 
         private void FixedUpdate()
         {
-            Vector2 position = rigidbody.position;
-            Vector2 translation = direction * speed * speedMultiplier * Time.fixedDeltaTime;
-            rigidbody.MovePosition(position + translation);
+            if (!stopped) {
+                Vector2 position = rigidbody.position;
+                Vector2 translation = direction * speed * speedMultiplier * Time.fixedDeltaTime;
+                rigidbody.MovePosition(position + translation);
+            }
         }
 
         public void SetDirection(Vector2 direction, bool forced = false)

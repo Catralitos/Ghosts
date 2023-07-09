@@ -32,7 +32,7 @@ namespace Pacman
                             score += pelletWeight / (pellet.position - newPosition).sqrMagnitude;
                     }
                     foreach(Transform ghost in pacman.ghosts) {
-                        if (ghost.gameObject.activeSelf)
+                        if (ghost != null)
                             score += ghostWeight / (ghost.position - newPosition).sqrMagnitude;
                     }
 
