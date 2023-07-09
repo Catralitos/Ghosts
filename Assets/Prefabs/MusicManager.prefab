@@ -52,6 +52,9 @@ MonoBehaviour:
   ghostEatenEvent: {fileID: 11400000, guid: 20a28bfb7b385f74fa49adf7484285a7, type: 2}
   menuOpenEvent: {fileID: 11400000, guid: 79df6d45159612a4eb1d2f71531e0abe, type: 2}
   gameOpenEvent: {fileID: 11400000, guid: d5be289b8cd35614185780d5dcf270bd, type: 2}
+  startJingleEvent: {fileID: 11400000, guid: 36eaafe5c4017c34399356dac7654701, type: 2}
+  winJingleEvent: {fileID: 11400000, guid: 0e1991e7f439a8c4abb6beeec1d8e6c7, type: 2}
+  loseJingleEvent: {fileID: 11400000, guid: 3d4ebbd9410992f4a991bad01d10dc9d, type: 2}
 --- !u!114 &918692780365041249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,6 +94,24 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: MenuMusic
     clip: {fileID: 8300000, guid: db1b38f83981472409602be21a6acbdb, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: StartJingle
+    clip: {fileID: 0}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: WinJingle
+    clip: {fileID: 0}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: LoseJingle
+    clip: {fileID: 0}
     volume: 0.2
     pitch: 1
     loop: 0

@@ -16,8 +16,14 @@ namespace Management
         public VoidEventChannelSO pacmanEatenEvent;
 
         [Header("Broadcasting on")] 
+        public VoidEventChannelSO startJingleEvent;
+        public VoidEventChannelSO winJingleEvent;
+        public VoidEventChannelSO loseJingleEvent;
         public VoidEventChannelSO gameLoadedEvent;
+        public VoidEventChannelSO startGameEvent;
+        public VoidEventChannelSO stopGameEvent;
 
+        private int _ghostsEaten;
         
         private void OnEnable()
         {
@@ -39,6 +45,14 @@ namespace Management
         private void Start()
         {
             scoreHolder.Init();
+            stopGameEvent.RaiseEvent();
+            startJingleEvent.RaiseEvent();
+            Invoke(nameof(StartGame), 5f);
+        }
+
+        private void StartGame()
+        {
+            startGameEvent.RaiseEvent();
             gameLoadedEvent.RaiseEvent();
         }
 
@@ -54,13 +68,26 @@ namespace Management
 
         private void EatPacman()
         {
-            //scoreHolder.IncreaseScore(1000); Would be cool to give extra score depending on how fast you eat pac-man
-            scoreHolder.EndGame();
+            stopGameEvent.RaiseEvent();
+            winJingleEvent.RaiseEvent();
+            Invoke(nameof(EndGame), 5f);
         }
 
         private void EatGhost(int multiplier)
         {
             scoreHolder.DecreaseScore(200 * multiplier);
+            _ghostsEaten++;
+            if (_ghostsEaten >= 4)
+            {
+                stopGameEvent.RaiseEvent();
+                loseJingleEvent.RaiseEvent();
+                Invoke(nameof(EndGame), 5f);
+            }
+        }
+
+        private void EndGame()
+        {
+            scoreHolder.EndGame();
         }
     }
 }

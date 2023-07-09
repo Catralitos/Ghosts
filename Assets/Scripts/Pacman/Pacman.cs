@@ -26,6 +26,7 @@ namespace Pacman
         public IntEventChannelSO ghostEatenEvent;
         public VoidEventChannelSO pelletEnded;
         
+        
         public int ghostMultiplier = 1;
 
         private void OnEnable()

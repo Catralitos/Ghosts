@@ -10,9 +10,11 @@ namespace Ghosts
         public Mind mind;
         public Vector3 startingPosition { get; private set; }
         private GhostOrderer go;
+        public float speed = 4;
         bool timerStarted = false;
         [SerializeField] private LayerMask obstacles;
         [SerializeField] private Transform target;
+        private Vector3 futureTarget;
         [SerializeField] private Transform teleporter_l;
         [SerializeField] private Transform teleporter_r;
 
@@ -24,18 +26,37 @@ namespace Ghosts
         [Header("Listening on")] 
         public VoidEventChannelSO pelletEatenEvent;
         public VoidEventChannelSO pelletEndedEvent;
+        public VoidEventChannelSO startGameEvent;
+        public VoidEventChannelSO stopGameEvent;
+
         private static readonly int Scared = Animator.StringToHash("Scared");
+
+        private void Stop()
+        {
+            go.enabled = false;
+            futureTarget = target.position;
+            target.position = transform.position;
+        }
+
+        private void ReStart()
+        {
+            target.position = futureTarget;
+        }
 
         private void OnEnable()
         {
             pelletEatenEvent.OnEventRaised += GetScared;
             pelletEndedEvent.OnEventRaised += StopScared;
+            startGameEvent.OnEventRaised += ReStart;
+            stopGameEvent.OnEventRaised += Stop;
         }
         
         private void OnDisable()
         {
             pelletEatenEvent.OnEventRaised -= GetScared;
             pelletEndedEvent.OnEventRaised -= StopScared;
+            startGameEvent.OnEventRaised -= ReStart;
+            stopGameEvent.OnEventRaised -= Stop;
             _instatiatedLight.transform.position = transform.position;
             _instatiatedLight.intensity = 0;
         }

@@ -1,4 +1,5 @@
 using System;
+using Events.ScriptableObjects;
 using UnityEngine;
 
 namespace Pacman
@@ -16,6 +17,10 @@ namespace Pacman
         public Vector3 startingPosition { get; private set; }
 
 
+        [Header("Listening on")]
+        public VoidEventChannelSO startGameEvent;
+        public VoidEventChannelSO stopGameEvent;
+        
         public Transform spriteChild;
         private Vector3 _originalScale;
 
@@ -26,6 +31,28 @@ namespace Pacman
             startingPosition = transform.position;
         }
 
+        private void OnEnable()
+        {
+            startGameEvent.OnEventRaised += Restart;
+            stopGameEvent.OnEventRaised += Stop;
+        }
+
+        private void OnDisable()
+        {
+            startGameEvent.OnEventRaised -= Restart;
+            stopGameEvent.OnEventRaised -= Stop;
+        }
+
+        private void Stop()
+        {
+            stopped = true;
+        }
+
+        private void Restart()
+        {
+            stopped = false;
+        }
+        
         private void Start()
         {
             ResetState();

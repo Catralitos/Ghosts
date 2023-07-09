@@ -478,12 +478,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mind: {fileID: 0}
+  speed: 4
+  obstacles:
+    serializedVersion: 2
+    m_Bits: 0
   target: {fileID: 0}
   teleporter_l: {fileID: 0}
   teleporter_r: {fileID: 0}
   lightPrefab: {fileID: 2398470356925442915, guid: 4e264f3684432c849ac087f41c9faf5a, type: 3}
   pelletEatenEvent: {fileID: 11400000, guid: 722e7009619492d4f8e944e55b858f91, type: 2}
   pelletEndedEvent: {fileID: 11400000, guid: 68ed2881bb5318e4f9684520e588c9ab, type: 2}
+  startGameEvent: {fileID: 11400000, guid: 953991aeb135f4944a06065a86df5a26, type: 2}
+  stopGameEvent: {fileID: 11400000, guid: 8bfb891dbba796b4683861eed4d3ad8f, type: 2}
 --- !u!114 &2402126619490169698
 MonoBehaviour:
   m_ObjectHideFlags: 0
