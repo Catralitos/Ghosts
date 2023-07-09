@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2337178110302177988}
   - component: {fileID: 6331096280133960264}
-  m_Layer: 9
+  m_Layer: 2
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 8853822568893657378}
   - component: {fileID: 6272671855580916811}
   - component: {fileID: 163080597547658802}
-  m_Layer: 9
+  m_Layer: 2
   m_Name: Pellet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,4 +1,5 @@
 using System;
+using Maze_Elements;
 using UnityEngine;
 
 namespace Ghosts
