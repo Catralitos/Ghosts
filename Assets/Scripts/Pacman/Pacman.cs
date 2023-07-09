@@ -1,4 +1,5 @@
 using UnityEngine;
+using Events.ScriptableObjects;
 
 namespace Pacman
 {
@@ -14,6 +15,7 @@ namespace Pacman
         public LayerMask ghostLayer;
         public LayerMask wallLayer;
         public LayerMask nodeLayer;
+        public VoidEventChannelSO pacmanEatenEvent;
         public int points = 200;
 
         private void Awake()
@@ -44,17 +46,14 @@ namespace Pacman
             transform.position = position;
         }
 
-        /* private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Pac-Man"))
+        private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (frightened.enabled) {
-                FindObjectOfType<GameManager>().GhostEaten(this);
-            } else {
-                FindObjectOfType<GameManager>().PacmanEaten();
+            if ((ghostLayer & 1 << collision.gameObject.layer) == 1 << collision.gameObject.layer)
+            {
+                pacmanEatenEvent.RaiseEvent();
+                gameObject.SetActive(false);
             }
         }
-    } */
 
     }
 }
