@@ -338,6 +338,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   spriteChild: {fileID: 1156850182022565754}
+  stopped: 0
 --- !u!114 &7079143036547928851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,7 +384,7 @@ MonoBehaviour:
   pelletWeight: 10
   targetPelletWeight: 1
   ghostWeight: 250
-  sameDirectionPenalty: 80
+  sameDirectionPenalty: 50
 --- !u!114 &8505764397766522339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,7 +400,7 @@ MonoBehaviour:
   pelletWeight: 10
   targetPelletWeight: 1
   ghostWeight: 500
-  sameDirectionPenalty: 80
+  sameDirectionPenalty: 50
 --- !u!212 &7941096347877517929
 SpriteRenderer:
   m_ObjectHideFlags: 0

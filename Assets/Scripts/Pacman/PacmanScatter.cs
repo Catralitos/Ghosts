@@ -76,7 +76,19 @@ namespace Pacman
                         }
                     }
 
-                    score += targetPelletWeight * distanceToClosestPellet * distanceToClosestPellet / (closestPellet.position - newPosition).sqrMagnitude;
+                    Debug.Log("///////////////////////////////");
+                    Debug.Log(availableDirection);
+                    Debug.Log("distanceToClosestPellet " + distanceToClosestPellet);
+                    Debug.Log((closestPellet.position - newPosition).sqrMagnitude);
+
+                    if (distanceToClosestPellet < 2.0f) {
+                        float targetPelletBonus = targetPelletWeight * distanceToClosestPellet * distanceToClosestPellet / (closestPellet.position - newPosition).sqrMagnitude;
+                        
+                        if (!float.IsInfinity(targetPelletBonus)) {
+                            Debug.Log(targetPelletBonus);
+                            score += targetPelletWeight * distanceToClosestPellet * distanceToClosestPellet / (closestPellet.position - newPosition).sqrMagnitude;
+                        }
+                    }
 
                     if (availableDirection == pacman.movement.direction * -1.0f) {
                         score -= sameDirectionPenalty;
