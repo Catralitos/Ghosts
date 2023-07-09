@@ -1,4 +1,5 @@
 using Audio;
+using Events.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,14 +11,13 @@ namespace UI.Menus
         [Header("Buttons")] public Button retryButton;
         public Button backToTitleButton;
 
-        private AudioManager _audioManager;
+        [Header("Broadcasting on")] public VoidEventChannelSO menuLoadedEvent;
         
         private void Start()
         {
             retryButton.onClick.AddListener(RetryGame);
             backToTitleButton.onClick.AddListener(BackToTitle);
-            _audioManager = GetComponent<AudioManager>();
-            _audioManager.Play("MenuMusic");
+            menuLoadedEvent.RaiseEvent();
         }
 
         private static void RetryGame()

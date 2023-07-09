@@ -1,4 +1,5 @@
 ﻿using Audio;
+using Events.ScriptableObjects;
 using Management.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -42,13 +43,10 @@ namespace UI.Menus
         /// The tutorial screen
         /// </summary>
         public GameObject tutorialScreen;
-
-        /// <summary>
-        /// The audio manager
-        /// </summary>
-        private AudioManager _audioManager;
         
         [Header("Score Holder")] public ScoreHolderSO scoreHolder;
+
+        [Header("Broadcasting on")] public VoidEventChannelSO menuLoadedEvent;
         
         /// <summary>
         /// Starts this instance.
@@ -60,8 +58,7 @@ namespace UI.Menus
             tutorialButton.onClick.AddListener(ShowTutorial);
             backButton1.onClick.AddListener(ShowTitleScreen);
             exitButton.onClick.AddListener(ExitGame);
-            _audioManager = GetComponent<AudioManager>();
-            _audioManager.Play("MenuMusic");
+            menuLoadedEvent.RaiseEvent();
         }
 
         /// <summary>

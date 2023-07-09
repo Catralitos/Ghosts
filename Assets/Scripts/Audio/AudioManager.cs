@@ -48,6 +48,12 @@ namespace Audio
                 return;
             }
 
+            if (s.clip == null)
+            {
+                Debug.LogWarning("Sound " + soundName + " does not have a clip yet!");
+                return;
+            }
+
             if (s.IsPlaying()) return;
             s.Play();
         }
@@ -62,6 +68,11 @@ namespace Audio
             if (s == null)
             {
                 Debug.LogWarning("Sound " + soundName + " not found!");
+                return;
+            }
+            if (s.clip == null)
+            {
+                Debug.LogWarning("Sound " + soundName + " does not have a clip yet!");
                 return;
             }
             if (!s.IsPlaying()) return;

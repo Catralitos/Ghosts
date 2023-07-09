@@ -15,6 +15,10 @@ namespace Management
         public IntEventChannelSO ghostEatenEvent;
         public VoidEventChannelSO pacmanEatenEvent;
 
+        [Header("Broadcasting on")] 
+        public VoidEventChannelSO gameLoadedEvent;
+
+        
         private void OnEnable()
         {
             pelletEatenEvent.OnEventRaised += EatPellet;
@@ -35,6 +39,7 @@ namespace Management
         private void Start()
         {
             scoreHolder.Init();
+            gameLoadedEvent.RaiseEvent();
         }
 
         private void EatPellet()

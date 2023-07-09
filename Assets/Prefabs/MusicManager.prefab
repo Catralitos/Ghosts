@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8013356494169430486
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3247151327958470333}
+  - component: {fileID: 1721858528176932211}
+  - component: {fileID: 918692780365041249}
+  m_Layer: 0
+  m_Name: MusicManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3247151327958470333
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8013356494169430486}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1721858528176932211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8013356494169430486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac5fe886e59a40eeabf9206a75360172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioManager: {fileID: 918692780365041249}
+  pelletEatenEvent: {fileID: 11400000, guid: 38fd47e67a080d0449b63d74fcbd314a, type: 2}
+  powerPelletEatenEvent: {fileID: 11400000, guid: 722e7009619492d4f8e944e55b858f91, type: 2}
+  powerPelletEndedEvent: {fileID: 11400000, guid: 68ed2881bb5318e4f9684520e588c9ab, type: 2}
+  ghostEatenEvent: {fileID: 11400000, guid: 20a28bfb7b385f74fa49adf7484285a7, type: 2}
+  menuOpenEvent: {fileID: 11400000, guid: 79df6d45159612a4eb1d2f71531e0abe, type: 2}
+  gameOpenEvent: {fileID: 11400000, guid: d5be289b8cd35614185780d5dcf270bd, type: 2}
+--- !u!114 &918692780365041249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8013356494169430486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5f3021410de84c46870b132e1bdb942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: PelletEaten
+    clip: {fileID: 8300000, guid: dc3f9d9861bc2f5468abfa3a49f5d1d4, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: GameMusic
+    clip: {fileID: 8300000, guid: 9ab3fd96f2ce50d4eabc9789eb68a296, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: RampageMusic
+    clip: {fileID: 8300000, guid: f448e2ea90ce3354d8ba38e2d79dbfc6, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: GhostEaten
+    clip: {fileID: 8300000, guid: d2139ed01c0106d46aba4efe550ddc9f, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: MenuMusic
+    clip: {fileID: 8300000, guid: db1b38f83981472409602be21a6acbdb, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
