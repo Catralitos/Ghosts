@@ -17,7 +17,7 @@ namespace Maze_Elements
             if (pacmanMask.HasLayer(other.gameObject.layer))
             {
                 pelletEatenEvent.RaiseEvent();
-                gameObject.SetActive(false);
+                Destroy(gameObject);
             }
         }
     }
