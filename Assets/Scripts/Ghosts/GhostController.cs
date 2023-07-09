@@ -1,6 +1,7 @@
 using System;
 using Maze_Elements;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace Ghosts
 {
@@ -21,13 +22,22 @@ namespace Ghosts
         [SerializeField] private Transform teleporter_l;
         [SerializeField] private Transform teleporter_r;
 
-
+        public GameObject lightPrefab;
+        private Light2D _instatiatedLight;
         private void Awake()
         {
             this.rb = GetComponent<Rigidbody2D>();
             this.startingPosition = this.transform.position;
             this.objective = this.startingPosition;
             this.go = GetComponent<GhostOrderer>();
+        }
+
+        private void Start()
+        {
+            GameObject instantiated = Instantiate(lightPrefab, transform.position, Quaternion.identity);
+            _instatiatedLight = instantiated.GetComponent<Light2D>();
+            _instatiatedLight.color = GetComponentInChildren<Light2D>().color;
+            _instatiatedLight.intensity = 0;
         }
 
         public void SetDirection(Vector2 direction)
@@ -69,13 +79,17 @@ namespace Ghosts
             return hit.collider != null;
         }
 
-        private void Update() {
+        private void Update()
+        {
+            _instatiatedLight.transform.position = objective;
             if (nextDirection != Vector2.zero)
             {
+                _instatiatedLight.intensity = 100;
                 SetDirection(nextDirection);
             }
             if (Math.Abs(transform.position.x - objective.x) <= 0.1f && Math.Abs(transform.position.y - objective.y) <= 0.1f)
             {
+                _instatiatedLight.intensity = 0;
                 this.direction = Vector2.zero;
                 this.nextDirection = Vector2.zero;
                 rb.velocity = Vector2.zero;
