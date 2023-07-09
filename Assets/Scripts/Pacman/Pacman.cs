@@ -16,7 +16,20 @@ namespace Pacman
         public LayerMask wallLayer;
         public LayerMask nodeLayer;
         public VoidEventChannelSO pacmanEatenEvent;
-        public int points = 200;
+        public VoidEventChannelSO powerPelletEatenEvent;
+        public IntEventChannelSO ghostEatenEvent;
+        public int ghostMultiplier = 1;
+
+        private void OnEnable()
+        {
+            powerPelletEatenEvent.OnEventRaised += EatPowerPellet;
+
+        }
+    
+        private void OnDisable()
+        {
+            powerPelletEatenEvent.OnEventRaised -= EatPowerPellet;
+        }
 
         private void Awake()
         {
@@ -50,9 +63,26 @@ namespace Pacman
         {
             if ((ghostLayer & 1 << collision.gameObject.layer) == 1 << collision.gameObject.layer)
             {
-                pacmanEatenEvent.RaiseEvent();
-                gameObject.SetActive(false);
+                if (scatter.enabled) {
+                    pacmanEatenEvent.RaiseEvent();
+                    gameObject.SetActive(false);
+                }
+                else {
+                    ghostEatenEvent.RaiseEvent(ghostMultiplier);
+                    ghostMultiplier *= 2;
+                    collision.gameObject.SetActive(false);
+                }
             }
+        }
+
+        private void EatPowerPellet() {
+            scatter.Disable();
+            Invoke(nameof(DisableChase), 8.0f);
+        }
+
+        private void DisableChase() {
+            ghostMultiplier = 1;
+            chase.Disable();
         }
 
     }

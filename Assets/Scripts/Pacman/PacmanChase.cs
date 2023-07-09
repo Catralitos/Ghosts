@@ -28,10 +28,12 @@ namespace Pacman
                     float score = 0;
 
                     foreach(Transform pellet in pacman.pelletMap) {
-                        score += pelletWeight / (pellet.position - newPosition).sqrMagnitude;
+                        if (pellet.gameObject.activeSelf)
+                            score += pelletWeight / (pellet.position - newPosition).sqrMagnitude;
                     }
                     foreach(Transform ghost in pacman.ghosts) {
-                        score += ghostWeight / (ghost.position - newPosition).sqrMagnitude;
+                        if (ghost.gameObject.activeSelf)
+                            score += ghostWeight / (ghost.position - newPosition).sqrMagnitude;
                     }
 
                     if (score > maxScore)
