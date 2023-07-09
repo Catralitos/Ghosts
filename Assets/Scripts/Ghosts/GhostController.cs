@@ -1,4 +1,3 @@
-using System;
 using Events.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -11,6 +10,8 @@ namespace Ghosts
         public Mind mind;
         public Vector3 startingPosition { get; private set; }
         private GhostOrderer go;
+        bool timerStarted = false;
+        [SerializeField] private LayerMask obstacles;
         [SerializeField] private Transform target;
         [SerializeField] private Transform teleporter_l;
         [SerializeField] private Transform teleporter_r;
@@ -55,6 +56,8 @@ namespace Ghosts
 
         public void StartMovement(Vector2 goal)
         {
+            CancelInvoke("SetRandomTarget");
+            timerStarted = false;
             target.position = new Vector3(goal.x, goal.y, target.position.z);
         }
         
@@ -73,6 +76,53 @@ namespace Ghosts
         private void StopScared()
         {
             if (_animator != null) _animator.SetBool(Scared, false);
+        }
+        
+        private static float RoundToNearestHalf(float a)
+        {
+            return Mathf.Round(a + 0.5f) - 0.5f;
+        }
+
+        private void Update() {
+            if (Mathf.Abs(transform.position.x - target.position.x) <= 0.1f &&
+                Mathf.Abs(transform.position.y - target.position.y) <= 0.1f)
+            {
+                ScatterTimer();
+            }
+        }
+
+        private void ScatterTimer()
+        {
+            if (!timerStarted)
+            {
+            Invoke(nameof(SetRandomTarget), UnityEngine.Random.Range(7,13));
+            timerStarted = true;
+            }
+        }
+
+        public void SetRandomTarget()
+        {
+            
+            bool looping = true;
+            int counter = 0;
+            float x;
+            float y;
+            Vector2 randomTarget;
+            while (looping && counter < 1000)
+            {
+                counter++;
+                x = RoundToNearestHalf(UnityEngine.Random.Range(-12.99f, 12.99f));
+                y = RoundToNearestHalf(UnityEngine.Random.Range(-14.99f, 14.00f));
+                randomTarget = new Vector2(x, y);
+
+                Collider2D[] colliders = Physics2D.OverlapCircleAll(randomTarget, 0.25f);
+                if (colliders.Length == 0)
+                {
+                    looping = false;
+                    target.position = new Vector3(x, y, target.position.z);
+                }
+            }
+            timerStarted = false;
         }
         
     }
