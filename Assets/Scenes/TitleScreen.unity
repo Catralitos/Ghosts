@@ -1403,7 +1403,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 91.35
+  m_fontSize: 91.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1994,7 +1994,7 @@ MonoBehaviour:
     In this game however, you play as the
     enemies. They will ordinarily wander randomly through the maze, but the player
     can left click to select them and right click on a point of the maze to send
-    them there. The objective is to quickly kill the diver to prevent him fro winning.
+    them there. The objective is to quickly kill the diver to prevent him from winning.
 
 
     In
@@ -2025,10 +2025,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45.2
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 1
   m_fontSizeMax: 300
   m_fontStyle: 0
