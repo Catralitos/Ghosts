@@ -63,7 +63,7 @@ namespace Ghosts
 
         private void OnDestroy()
         {
-            Destroy(_instatiatedLight.gameObject);
+            if (_instatiatedLight != null) Destroy(_instatiatedLight.gameObject);
         }
 
         private void Awake()
