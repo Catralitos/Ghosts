@@ -11,6 +11,7 @@ public class Pacman : MonoBehaviour
     public Transform pelletMap;
     public LayerMask ghostLayer;
     public LayerMask wallLayer;
+    public LayerMask nodeLayer;
     public int points = 200;
 
     private void Awake()
