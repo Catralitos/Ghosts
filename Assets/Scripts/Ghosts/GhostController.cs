@@ -26,16 +26,19 @@ namespace Ghosts
         [Header("Listening on")] 
         public VoidEventChannelSO pelletEatenEvent;
         public VoidEventChannelSO pelletEndedEvent;
+        public VoidEventChannelSO startGameEvent;
+        public VoidEventChannelSO stopGameEvent;
+
         private static readonly int Scared = Animator.StringToHash("Scared");
 
-        public void Stop()
+        private void Stop()
         {
             go.enabled = false;
             futureTarget = target.position;
             target.position = transform.position;
         }
 
-        public void ReStart()
+        private void ReStart()
         {
             target.position = futureTarget;
         }
@@ -44,12 +47,16 @@ namespace Ghosts
         {
             pelletEatenEvent.OnEventRaised += GetScared;
             pelletEndedEvent.OnEventRaised += StopScared;
+            startGameEvent.OnEventRaised += ReStart;
+            stopGameEvent.OnEventRaised += Stop;
         }
         
         private void OnDisable()
         {
             pelletEatenEvent.OnEventRaised -= GetScared;
             pelletEndedEvent.OnEventRaised -= StopScared;
+            startGameEvent.OnEventRaised -= ReStart;
+            stopGameEvent.OnEventRaised -= Stop;
             _instatiatedLight.transform.position = transform.position;
             _instatiatedLight.intensity = 0;
         }

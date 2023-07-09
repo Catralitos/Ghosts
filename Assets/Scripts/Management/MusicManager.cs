@@ -1,5 +1,4 @@
-﻿using System;
-using Audio;
+﻿using Audio;
 using Events.ScriptableObjects;
 using UnityEngine;
 
@@ -17,6 +16,9 @@ namespace Management
         public IntEventChannelSO ghostEatenEvent;
         public VoidEventChannelSO menuOpenEvent;
         public VoidEventChannelSO gameOpenEvent;
+        public VoidEventChannelSO startJingleEvent;
+        public VoidEventChannelSO winJingleEvent;
+        public VoidEventChannelSO loseJingleEvent;
         
         #region SingleTon
      
@@ -58,6 +60,9 @@ namespace Management
             ghostEatenEvent.OnEventRaised += PlayGhostEaten;
             menuOpenEvent.OnEventRaised += LoadMenu;
             gameOpenEvent.OnEventRaised += LoadGame;
+            startJingleEvent.OnEventRaised += StartJingle;
+            winJingleEvent.OnEventRaised += WinJingle;
+            loseJingleEvent.OnEventRaised += LoseJingle;
         }
 
         private void OnDisable()
@@ -117,5 +122,23 @@ namespace Management
             audioManager.Play("GameMusic");
         }
 
+        private void StartJingle()
+        {
+            audioManager.Stop("MenuMusic");
+            audioManager.Stop("GameMusic");
+            audioManager.Stop("StartJingle");
+        }
+
+        private void WinJingle()
+        {
+            audioManager.Stop("GameMusic");
+            audioManager.Stop("WinJingle");
+        }
+        
+        private void LoseJingle()
+        {
+            audioManager.Stop("GameMusic");
+            audioManager.Stop("LoseJingle");
+        }
     }
 }
