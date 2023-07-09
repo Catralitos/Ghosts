@@ -3,7 +3,7 @@ using Extensions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Pellets
+namespace Maze_Elements
 {
     public class Pellet : MonoBehaviour
     {
