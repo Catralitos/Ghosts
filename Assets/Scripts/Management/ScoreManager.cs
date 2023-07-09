@@ -70,7 +70,7 @@ namespace Management
         {
             stopGameEvent.RaiseEvent();
             winJingleEvent.RaiseEvent();
-            Invoke(nameof(EndGame), 5f);
+            Invoke(nameof(EndGame), 8f);
         }
 
         private void EatGhost(int multiplier)
@@ -81,7 +81,7 @@ namespace Management
             {
                 stopGameEvent.RaiseEvent();
                 loseJingleEvent.RaiseEvent();
-                Invoke(nameof(EndGame), 5f);
+                Invoke(nameof(EndGame), 8f);
             }
         }
 

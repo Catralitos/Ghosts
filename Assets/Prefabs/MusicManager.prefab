@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1721858528176932211
 MonoBehaviour:
@@ -105,13 +105,13 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: WinJingle
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: f17b27199a0763b4e96dad03463db061, type: 3}
     volume: 0.2
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: LoseJingle
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 247fed128a1f8de4292c789b294ecd92, type: 3}
     volume: 0.2
     pitch: 1
     loop: 0
