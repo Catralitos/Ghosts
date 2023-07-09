@@ -35,10 +35,12 @@ namespace Ghosts
             // Only set the direction if the tile in that direction is available
             // otherwise we set it as the next direction so it'll automatically be
             // set when it does become available
-            if (Mathf.Abs(transform.position.x - RoundToNearestHalf(transform.position.x)) <= 0.1f && 
-                Mathf.Abs(transform.position.y - RoundToNearestHalf(transform.position.y)) <= 0.1f)
+            corner = true;
+
+            if (Mathf.Abs(transform.position.x - RoundToNearestHalf(transform.position.x)) <= 0.2f && 
+                Mathf.Abs(transform.position.y - RoundToNearestHalf(transform.position.y)) <= 0.2f)
             {
-                corner = true;
+                Debug.Log("The position was:" + transform.position);
                 transform.position = new Vector3(RoundToNearestHalf(transform.position.x), RoundToNearestHalf(transform.position.y), transform.position.z);
             }
 
@@ -46,12 +48,12 @@ namespace Ghosts
             {
                 this.direction = direction;
                 nextDirection = Vector2.zero;
-                corner = false;
             }
             else
             {
                 nextDirection = direction;
             }
+            corner = false;
         }
 
         private static float RoundToNearestHalf(float a)
@@ -146,7 +148,6 @@ namespace Ghosts
                     distance = DistanceToPoint(this.rb.position + Vector2.down, objective);
                     direction = Vector2.down;
                 }
-
                 SetDirection(direction);
             }
         }
@@ -159,7 +160,7 @@ namespace Ghosts
 
             if (node != null && Math.Abs(transform.position.x - objective.x) > 0.1f && Math.Abs(transform.position.y - objective.y) > 0.1f)
             {
-                Debug.Log("Entrou no node");
+                Debug.Log("Entrou no node" + node.transform.position);
                 Vector2 d = Vector2.zero;
                 float distance = 0.0f;
                 

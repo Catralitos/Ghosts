@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mind: {fileID: 0}
-  speed: 4
+  speed: 3
   speedMultiplier: 1
   direction: {x: 0, y: 0}
   nextDirection: {x: 0, y: 0}
@@ -134,6 +134,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   objective: {x: 0, y: 0}
+  teleporter_l: {fileID: 0}
+  teleporter_r: {fileID: 0}
 --- !u!212 &4217992079078233407
 SpriteRenderer:
   m_ObjectHideFlags: 0
