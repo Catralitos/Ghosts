@@ -1,24 +1,33 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace Ghosts
 {
     public class Mind : MonoBehaviour
     {
         [SerializeField] private GameObject[] ghosts;
-        private GameObject currentGhost;
+        private GameObject _currentGhost;
+
+        private readonly Light2D[] _lights = new Light2D[4];
 
         private void Start() {
-            foreach (GameObject ghost in ghosts)
+            for (int i = 0; i < ghosts.Length; i++)
             {
-                ghost.GetComponent<GhostOrderer>().enabled = false;
+                ghosts[i].GetComponent<GhostOrderer>().enabled = false;
+                _lights[i] = ghosts[i].GetComponentInChildren<Light2D>();
             }
-            currentGhost = ghosts[0];
+            _currentGhost = ghosts[0];
         }
 
         public void ChangeGhost(GameObject newGhost)
         {
-            currentGhost.GetComponent<GhostOrderer>().enabled = false;
-            currentGhost = newGhost;
+            _currentGhost.GetComponent<GhostOrderer>().enabled = false;
+            _currentGhost = newGhost;
+            for (int i = 0; i < ghosts.Length; i++)
+            {
+                _lights[i].intensity = _currentGhost == ghosts[i] ? 100 : 10;
+            }
+            
         }
     }
 }
