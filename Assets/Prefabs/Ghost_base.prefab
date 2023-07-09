@@ -376,7 +376,7 @@ MonoBehaviour:
   teleporter_l: {fileID: 0}
   teleporter_r: {fileID: 0}
   lightPrefab: {fileID: 2398470356925442915, guid: 4e264f3684432c849ac087f41c9faf5a, type: 3}
-  pelletEatenEvent: {fileID: 11400000, guid: 38fd47e67a080d0449b63d74fcbd314a, type: 2}
+  pelletEatenEvent: {fileID: 11400000, guid: 722e7009619492d4f8e944e55b858f91, type: 2}
   pelletEndedEvent: {fileID: 11400000, guid: 68ed2881bb5318e4f9684520e588c9ab, type: 2}
 --- !u!212 &4217992079078233407
 SpriteRenderer:
