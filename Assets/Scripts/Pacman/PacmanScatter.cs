@@ -69,7 +69,7 @@ namespace Pacman
                             score += pelletWeight / (pellet.position - newPosition).sqrMagnitude;
                     }
                     foreach(Transform ghost in pacman.ghosts) {
-                        if (ghost.gameObject.activeSelf) {
+                        if (ghost != null) {
                             float test = ghostWeight / Mathf.Pow((ghost.position - newPosition).sqrMagnitude, 1.0f);
                             //Debug.Log("Ghost score: " + test);
                             score -= test;

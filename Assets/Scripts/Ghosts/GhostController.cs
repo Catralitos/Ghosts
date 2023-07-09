@@ -38,6 +38,11 @@ namespace Ghosts
             pelletEndedEvent.OnEventRaised -= StopScared;
         }
 
+        private void OnDestroy()
+        {
+            Destroy(_instatiatedLight.gameObject);
+        }
+
         private void Awake()
         {
             this.startingPosition = this.transform.position;
