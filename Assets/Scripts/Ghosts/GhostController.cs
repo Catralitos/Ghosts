@@ -16,6 +16,7 @@ namespace Ghosts
         public Vector3 startingPosition { get; private set; }
         public Vector2 objective;
         private GhostOrderer go;
+        private bool corner = false;
         [SerializeField] private Transform teleporter_l;
         [SerializeField] private Transform teleporter_r;
 
@@ -33,15 +34,28 @@ namespace Ghosts
             // Only set the direction if the tile in that direction is available
             // otherwise we set it as the next direction so it'll automatically be
             // set when it does become available
+            if (Mathf.Abs(transform.position.x - RoundToNearestHalf(transform.position.x)) <= 0.1f && 
+                Mathf.Abs(transform.position.y - RoundToNearestHalf(transform.position.y)) <= 0.1f)
+            {
+                corner = true;
+                transform.position = new Vector3(RoundToNearestHalf(transform.position.x), RoundToNearestHalf(transform.position.y), transform.position.z);
+            }
+
             if (!Occupied(direction))
             {
                 this.direction = direction;
                 nextDirection = Vector2.zero;
+                corner = false;
             }
             else
             {
                 nextDirection = direction;
             }
+        }
+
+        private static float RoundToNearestHalf(float a)
+        {
+            return Mathf.Round(a + 0.5f) - 0.5f;
         }
 
         public bool Occupied(Vector2 direction)
@@ -59,22 +73,25 @@ namespace Ghosts
             }
             if (Math.Abs(transform.position.x - objective.x) <= 0.1f && Math.Abs(transform.position.y - objective.y) <= 0.1f)
             {
+                this.direction = Vector2.zero;
+                this.nextDirection = Vector2.zero;
                 rb.velocity = Vector2.zero;
                 rb.position = objective;
                 transform.position = objective;
-                this.direction = Vector2.zero;
-                this.nextDirection = Vector2.zero;
             }
         }
 
         private void FixedUpdate()
         {
             //Vector2 translation = this.direction * this.speed * this.speedMultiplier * Time.fixedDeltaTime;
-            Transform t = transform;
-            Vector2 position = t.position;
-            Vector2 moveTowards = Vector2.MoveTowards(position, position + direction,
-                speed * speedMultiplier * Time.fixedDeltaTime);
-            rb.MovePosition(moveTowards);
+            if (!corner)
+            {
+                Transform t = transform;
+                Vector2 position = t.position;
+                Vector2 moveTowards = Vector2.MoveTowards(position, position + direction,
+                    speed * speedMultiplier * Time.fixedDeltaTime);
+                rb.MovePosition(moveTowards);
+            }
         }
 
         private void OnMouseDown()
@@ -151,7 +168,7 @@ namespace Ghosts
                     // If the distance in this direction is greater than the current
                     // max distance then this direction becomes the new farthest
                     if (availableDirection != this.direction * -1 && 
-                        DistanceToPoint(this.rb.position + availableDirection, objective) < distance || distance == 0.0f)
+                        (DistanceToPoint(this.rb.position + availableDirection, objective) < distance || distance == 0.0f))
                     {
                         distance = DistanceToPoint(this.rb.position + availableDirection, objective);
                         d = availableDirection;

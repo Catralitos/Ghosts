@@ -12,7 +12,7 @@ namespace Ghosts
         
         private static float RoundToNearestHalf(float a)
         {
-            return Mathf.Round(a * 2f) * 0.5f;
+            return Mathf.Round(a + 0.5f) - 0.5f;
         }
 
         private void Start()
