@@ -126,19 +126,19 @@ namespace Management
         {
             audioManager.Stop("MenuMusic");
             audioManager.Stop("GameMusic");
-            audioManager.Stop("StartJingle");
+            audioManager.Play("StartJingle");
         }
 
         private void WinJingle()
         {
             audioManager.Stop("GameMusic");
-            audioManager.Stop("WinJingle");
+            audioManager.Play("WinJingle");
         }
         
         private void LoseJingle()
         {
             audioManager.Stop("GameMusic");
-            audioManager.Stop("LoseJingle");
+            audioManager.Play("LoseJingle");
         }
     }
 }
